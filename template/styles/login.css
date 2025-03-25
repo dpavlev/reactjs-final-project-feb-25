@@ -1,0 +1,80 @@
+.login-container {
+    max-width: 25vw;
+    /* max-height: 100vh; */
+    margin: auto;
+}
+
+.main {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(/imgs/saloons-background2.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.login-form {
+    border: solid thin #f8d999;
+    background-color: #FFE5B4;
+    margin: 1rem auto 1rem auto;
+    gap: 30px;
+}
+
+.login-type {
+    display: flex;
+    justify-content: space-between;
+}
+
+.radioContainer {
+    position: relative;
+    cursor: pointer;
+    font-size: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* margin-top: 15px; */
+    /* margin-bottom: 15px; */
+}
+
+.radioContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    border-radius: 10px;
+    margin: 0;
+}
+
+.radioLabel {
+    background-color: white;
+    align-content: center;
+    border: medium outset #E9B4B1;
+    border-radius: 10px;
+    padding: 0.4em;
+    text-decoration: none;
+    color: #a5484d;
+    transition: 0.3s;
+}
+
+.radioLabel:hover {
+    color: white;
+    background-color: #56cbf9;
+}
+
+.radioLabel:active {
+    color: lightgray;
+    background-color: #3ea0c7;
+}
+
+.radioContainer input:checked+.radioLabel {
+    background-color: #56cbf9 !important;
+    color: white !important
+}
+
+.form-content {
+    padding-top: 2rem;
+}

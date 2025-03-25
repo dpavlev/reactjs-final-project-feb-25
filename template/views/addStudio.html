@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>StyleGo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./imgs/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/dashboardStyles2.css">
+    <link rel="stylesheet" href="../styles/login.css">
+    <link rel="stylesheet" href="../styles/addStudio.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="/" class="header-logo-background">
+            <img src="imgs/logo_rectangle.png" alt="" class="header-logo-size">
+        </a>
+        <nav class="nav hide-on-small">
+            <div class="searchbar-container">
+                <i class="fa-solid fa-magnifying-glass magglass"></i>
+                <input class="searchbar" type="search" name="search" placeholder="Search">
+            </div>
+            <a href="/about" class="button more-menu">
+                About
+                <div class="test">
+                    <button class="button-about"><i class="fa-solid fa-user"></i>For Users</button>
+                    <button class="button-about"><i class="fa-solid fa-user-tie"></i>For Studios</button>
+                </div>
+            </a>
+            <a href="/login.html" class="button">Login</a>
+            <a href="/register.html" class="button">Register</a>
+        </nav>
+    </header>
+    <main class="main">
+        <div class="login-container">
+            <form action="" class="form-content login-form">
+                <input type="text" name="studioName" id="studioName" placeholder="Име на студиото..." class="form-div">
+                <input type="text" name="studioAdress" id="studioAdress" placeholder="Адрес..." class="form-div">
+                <input type="text" name="studioPhone" id="studioPhone" placeholder="Телефон: +359 8..."
+                    class="form-div">
+                <textarea name="studioDescription" id="description" placeholder="Описание..."
+                    class="form-div form-textarea"></textarea>
+                <input type="url" name="studioImg" id="studioImg" placeholder="Image URL..." class="form-div">
+                <input type="number" name="qtyServices" id="qtyServices" min="1" value="0" class="form-div"
+                    onchange="updateServices()">
+                <div class="servicesContainer">
+                    <!-- TODO: Add price input form -->
+
+                </div>
+                <button class="form-submit-btn">Add Studio</button>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-info-container">
+            <div class="footer-item">
+                <a href="#" class="header-logo-background">
+                    <img src="./imgs/logo_rectangle.png" alt="" class="header-logo-size">
+                </a>
+                <a href="#" class="new-salon-btn">Добави салон</a>
+            </div>
+            <div class="footer-item-ul">
+                <h2>Бързи линкове</h2>
+                <ul>
+                    <li><a href="#" class="footer-link">Вход за клиенти</a></li>
+                    <li><a href="#" class="footer-link">Вход за салони</a></li>
+                    <li><a href="#" class="footer-link">Регистрация</a></li>
+                    <li><a href="#" class="footer-link">Повече информация</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 StyleGo Изготвено от Димитър Павлев (dimitar557) </p>
+        </div>
+    </footer>
+    <script>
+        function updateServices() {
+            const servicesContainer = document.querySelector('.servicesContainer')
+            servicesContainer.innerHTML = ''
+
+            const count = Number(document.querySelector('#qtyServices').value)
+            for (let i = 1; i <= count; i++) {
+                const input = document.createElement("input");
+                input.type = "text";
+                input.name = "item" + i;
+                input.placeholder = 'Item description...';
+                input.classList.add('form-div')
+                servicesContainer.appendChild(input);
+                // container.appendChild(document.createElement("br"));
+            }
+
+        }
+    </script>
+</body>
+
+</html>

@@ -8,9 +8,9 @@ export default function Footer() {
                     <Link to="/" className="header-logo-background">
                         <img src="/images/logo_rectangle.png" alt="StyleGo" className="header-logo-size" />
                     </Link>
-                    <a href="#" className="new-salon-btn">
+                    <Link href="/addStudio" className="new-salon-btn">
                         Добави салон
-                    </a>
+                    </Link>
                 </div>
                 <div className="footer-item-ul">
                     <h2>Бързи линкове</h2>

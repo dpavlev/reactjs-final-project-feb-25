@@ -13,8 +13,10 @@ export default function Header() {
                 </div> */}
                 <Link to="/login" className="button">
                     Login
+                </Link>
+                <Link to="/register" className="button">
                     Register
-                </a>
+                </Link>
                 <a href="#" className="button">
                     Profile
                 </a>

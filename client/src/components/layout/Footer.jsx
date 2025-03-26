@@ -21,9 +21,9 @@ export default function Footer() {
                             </Link>
                         </li>
                         <li>
-                            <a href="#" className="footer-link">
+                            <Link to="/register" className="footer-link">
                                 Регистрация
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <a href="#" className="footer-link">

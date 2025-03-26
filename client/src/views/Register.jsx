@@ -2,11 +2,17 @@ import FormButton from "../components/common/FormButton";
 import { Navigate } from "react-router";
 import styles from "./AuthPages.module.css";
 import { useState } from "react";
+import RegisterUser from "../components/features/RegisterUser";
+import RegisterStudio from "../components/features/RegisterStudio";
 
-export default function Login() {
+export default function Register() {
     const [values, setValues] = useState({
-        username: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        phoneNumber: "",
         password: "",
+        rePassword: "",
         loginType: "forUser"
     });
 
@@ -17,7 +23,6 @@ export default function Login() {
         });
     };
 
-    // If user is already logged in, redirect to home page
     if (localStorage.getItem("token")) {
         return <Navigate to="/" />;
     }
@@ -29,16 +34,15 @@ export default function Login() {
                     <div className={styles.loginType}>
                         <label htmlFor="forUser" className={styles.radioContainer}>
                             <input type="radio" name="loginType" id="forUser" value="forUser" checked={values.loginType === "forUser"} onChange={handleChange} />
-                            <span className={styles.radioLabel}>Login for User</span>
+                            <span className={styles.radioLabel}>Register User</span>
                         </label>
                         <label htmlFor="forBusiness" className={styles.radioContainer}>
                             <input type="radio" name="loginType" id="forBusiness" value="forBusiness" checked={values.loginType === "forBusiness"} onChange={handleChange} />
-                            <span className={styles.radioLabel}>Login for Studio</span>
+                            <span className={styles.radioLabel}>Register Studio</span>
                         </label>
                     </div>
-                    <input type="text" name="username" id="username" placeholder="Username" className={styles.formDiv} value={values.username} onChange={handleChange} />
-                    <input type="password" name="password" id="password" placeholder="Password" className={styles.formDiv} value={values.password} onChange={handleChange} />
-                    <FormButton text="Login" />
+                    {values.loginType === "forUser" ? <RegisterUser values={values} handleChange={handleChange} /> : <RegisterStudio values={values} handleChange={handleChange} />}
+                    <FormButton text="Register" />
                 </form>
             </div>
         </main>

@@ -74,3 +74,8 @@
     font-size: 16pt;
     transition: 0.3s;
 }
+
+.formSubmitBtn:hover {
+    background-color: #059400;
+    cursor: pointer;
+}

@@ -262,10 +262,7 @@ body {
   align-items: center;
 }
 
-.form-submit-btn:hover {
-  background-color: #059400;
-  cursor: pointer;
-}
+
 
 .image-background {
   background-repeat: no-repeat;

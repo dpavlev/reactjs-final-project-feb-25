@@ -262,16 +262,6 @@ body {
   align-items: center;
 }
 
-.form-submit-btn {
-  color: white;
-  background-color: #5fc25b;
-  min-height: 45px;
-  border: none;
-  border-radius: 10px;
-  font-size: 16pt;
-  transition: 0.3s;
-}
-
 .form-submit-btn:hover {
   background-color: #059400;
   cursor: pointer;

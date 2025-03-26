@@ -64,3 +64,13 @@
     gap: 5px;
     /* padding-left: 0.5rem; */
 }
+
+.formSubmitBtn {
+    color: white;
+    background-color: #5fc25b;
+    min-height: 45px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16pt;
+    transition: 0.3s;
+}

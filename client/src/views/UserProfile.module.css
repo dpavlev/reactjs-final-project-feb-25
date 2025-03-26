@@ -1,0 +1,46 @@
+.formSubmitBtn {
+    width: 40%;
+}
+
+.backBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+}
+
+.backBtn:hover {
+    background-color: #f1f1f1;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.deleteProfile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deleteProfile a {
+    color: red;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.deleteProfile a:hover {
+    color: darkred;
+}
+
+.nameContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}

@@ -21,7 +21,7 @@ const featuredSalons = [
 
 export default function Home() {
     return (
-        <>
+        <main className="main">
             <div className="image-background">
                 <div className="top-content">
                     <div className="form-container center-form">
@@ -54,6 +54,6 @@ export default function Home() {
                     ))}
                 </div>
             </div>
-        </>
+        </main>
     );
 }

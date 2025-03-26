@@ -1,28 +1,3 @@
-.loginContainer {
-    max-width: 25vw;
-    /* max-height: 100vh; */
-    margin: auto;
-}
-
-.main {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url(/images/big_background.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    opacity: 0.8;
-}
-
-.loginForm {
-    border: solid thin #f8d999;
-    background-color: #FFE5B4;
-    margin: 1rem auto 1rem auto;
-    gap: 30px;
-}
-
 .loginType {
     display: flex;
     justify-content: space-between;
@@ -74,29 +49,6 @@
 .radioContainer input:checked+.radioLabel {
     background-color: #56cbf9 !important;
     color: white !important
-}
-
-.formDiv {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 5px;
-    padding-left: 0.5rem;
-    border: solid thin lightgray;
-    border-radius: 5px;
-    min-height: 40px;
-    width: 100%;
-}
-
-.formContent {
-    display: flex;
-    flex-direction: column;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    padding: 2rem 1.2rem 1rem 1.2rem;
-    border-radius: 10px;
-    min-width: 400px;
-    max-width: 400px;
 }
 
 .infoHeadingWrapper {

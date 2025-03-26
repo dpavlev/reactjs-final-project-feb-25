@@ -1,6 +1,7 @@
 import FormButton from "../components/common/FormButton";
 import { Navigate } from "react-router";
-import styles from "./AuthPages.module.css";
+import authStyles from "./AuthPages.module.css";
+import formsStyles from "./Forms.module.css";
 import { useState } from "react";
 
 export default function Login() {
@@ -23,21 +24,21 @@ export default function Login() {
     }
 
     return (
-        <main className={styles.main}>
-            <div className={styles.loginContainer}>
-                <form action="" className={`${styles.formContent} ${styles.loginForm}`}>
-                    <div className={styles.loginType}>
-                        <label htmlFor="forUser" className={styles.radioContainer}>
+        <main className={formsStyles.main}>
+            <div className={formsStyles.loginContainer}>
+                <form action="" className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>
+                    <div className={authStyles.loginType}>
+                        <label htmlFor="forUser" className={authStyles.radioContainer}>
                             <input type="radio" name="loginType" id="forUser" value="forUser" checked={values.loginType === "forUser"} onChange={handleChange} />
-                            <span className={styles.radioLabel}>Login for User</span>
+                            <span className={authStyles.radioLabel}>Login for User</span>
                         </label>
-                        <label htmlFor="forBusiness" className={styles.radioContainer}>
+                        <label htmlFor="forBusiness" className={authStyles.radioContainer}>
                             <input type="radio" name="loginType" id="forBusiness" value="forBusiness" checked={values.loginType === "forBusiness"} onChange={handleChange} />
-                            <span className={styles.radioLabel}>Login for Studio</span>
+                            <span className={authStyles.radioLabel}>Login for Studio</span>
                         </label>
                     </div>
-                    <input type="text" name="username" id="username" placeholder="Username" className={styles.formDiv} value={values.username} onChange={handleChange} />
-                    <input type="password" name="password" id="password" placeholder="Password" className={styles.formDiv} value={values.password} onChange={handleChange} />
+                    <input type="text" name="username" id="username" placeholder="Username" className={formsStyles.formDiv} value={values.username} onChange={handleChange} />
+                    <input type="password" name="password" id="password" placeholder="Password" className={formsStyles.formDiv} value={values.password} onChange={handleChange} />
                     <FormButton text="Login" />
                 </form>
             </div>

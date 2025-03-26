@@ -246,7 +246,7 @@ body {
 
 .datetime-input {
   padding-left: 0.5rem;
-  border: solid thin lightgray;
+  border: none;
   border-radius: 5px;
   min-height: 40px;
   width: 100%;
@@ -280,7 +280,7 @@ body {
 .image-background {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(/imgs/saloons-background.png);
+  background-image: url(/images/saloons-background.png);
   min-height: 380px;
   background-position: center;
 
@@ -323,7 +323,7 @@ body {
 .special-salons {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url(/imgs/saloons-background3.png);
+  background-image: url(/images/saloons-background3.png);
   background-position: center;
   min-height: 380px;
 }

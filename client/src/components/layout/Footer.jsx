@@ -1,11 +1,13 @@
+import { Link } from "react-router";
+
 export default function Footer() {
     return (
         <footer className="footer">
             <div className="footer-info-container">
                 <div className="footer-item">
-                    <a href="/views/index.html" className="header-logo-background">
+                    <Link to="/" className="header-logo-background">
                         <img src="/images/logo_rectangle.png" alt="StyleGo" className="header-logo-size" />
-                    </a>
+                    </Link>
                     <a href="#" className="new-salon-btn">
                         Добави салон
                     </a>
@@ -14,9 +16,9 @@ export default function Footer() {
                     <h2>Бързи линкове</h2>
                     <ul>
                         <li>
-                            <a href="#" className="footer-link">
+                            <Link to="/login" className="footer-link">
                                 Вход
-                            </a>
+                            </Link>
                         </li>
                         <li>
                             <a href="#" className="footer-link">

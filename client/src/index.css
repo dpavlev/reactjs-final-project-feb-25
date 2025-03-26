@@ -482,11 +482,6 @@ body {
   width: 270px;
 }
 
-.form-textarea {
-  resize: none;
-  height: 6rem;
-}
-
 .datetime-input::-webkit-calendar-picker-indicator {
   display: none;
 }

@@ -1,28 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import FormButton from "../common/FormButton";
+import DatetimePicker from "../common/DatetimePicker";
 
 export default function SearchForm() {
-    const [values, setValues] = useState({
-        city: "",
-        service: "",
-        date: ""
-    });
-
-    useEffect(() => {
+    const getInitialDate = () => {
         let date = new Date(Date.now());
         date.setHours(date.getHours() + 4);
         let minutes = date.getMinutes();
         minutes = Math.round(minutes / 10) * 10;
         date.setMinutes(minutes);
-        setValues((state) => ({ ...state, date: date.toISOString().slice(0, 16) }));
-    }, []);
+        return date.toISOString().slice(0, 16);
+    };
+
+    const [values, setValues] = useState({
+        city: "",
+        service: "",
+        date: getInitialDate()
+    });
 
     function valuesChange(e) {
         setValues({ ...values, [e.target.name]: e.target.value });
-    }
-
-    function showDatePicker(e) {
-        e.currentTarget.children[1].showPicker();
     }
 
     return (
@@ -57,10 +54,7 @@ export default function SearchForm() {
                     </option>
                 </select>
             </div>
-            <div className="form-div datetime-container" onClick={showDatePicker}>
-                <i className="fa-solid fa-calendar-days form-ico"></i>
-                <input type="datetime-local" name="date" id="date" className="datetime-input" value={values.date} onChange={valuesChange} />
-            </div>
+            <DatetimePicker onChange={valuesChange} />
             <FormButton text="Покажи салоните" />
         </form>
     );

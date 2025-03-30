@@ -7,6 +7,7 @@ import RegisterUser from "../components/features/RegisterUser";
 import RegisterStudio from "../components/features/RegisterStudio";
 
 export default function Register() {
+    //TODO: Add register functionality
     const [values, setValues] = useState({
         firstName: "",
         lastName: "",

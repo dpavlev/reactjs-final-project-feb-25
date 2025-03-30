@@ -4,6 +4,7 @@ import formsStyles from "./Forms.module.css";
 import FormButton from "../components/common/FormButton";
 
 export default function UserProfile() {
+    //TODO: Add user profile edit functionality
     return (
         <main className={formsStyles.main}>
             <div className={formsStyles.loginContainer}>

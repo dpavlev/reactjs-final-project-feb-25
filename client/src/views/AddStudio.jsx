@@ -1,8 +1,11 @@
 import { useState } from "react";
 import FormButton from "../components/common/FormButton";
 import formsStyles from "./Forms.module.css";
+import validateForm from "../validators/formValidator";
 
 export default function AddStudio() {
+    // TODO: Add validation to the form
+    // TODO: Check if you can export the logic to a separate file
     const [values, setValues] = useState({
         studioName: "",
         studioAddress: "",
@@ -40,6 +43,12 @@ export default function AddStudio() {
 
     const submitAction = () => {
         // TODO: Send the data to the server
+        try {
+            validateForm(values);
+        } catch (error) {
+            console.error(error.message);
+            return;
+        }
         console.log(values);
     };
 

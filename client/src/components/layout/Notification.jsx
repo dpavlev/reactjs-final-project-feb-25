@@ -1,21 +1,17 @@
-import { useEffect } from "react";
 import { createPortal } from "react-dom";
+import { useNotification } from "../../contexts/NotificationContext";
+import styles from "./Notification.module.css";
 
-export default function Notification(message) {
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            // TODO: useRef to get the notification element and remove it
-            const notificationElement = document.querySelector(".notification");
-            if (notificationElement) {
-                notificationElement.remove();
-            }
-        }, 3000);
+export default function Notification() {
+    const { notification } = useNotification();
 
-        return () => clearTimeout(timer); // Cleanup on unmount
-    }, []);
+    if (!notification) {
+        return null;
+    }
+
     return createPortal(
-        <div className="notification">
-            <p>{message}</p>
+        <div className={styles.notification}>
+            <p>{notification}</p>
         </div>,
         document.getElementById("portal-root")
     );

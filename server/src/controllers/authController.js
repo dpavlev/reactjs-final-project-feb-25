@@ -31,21 +31,24 @@ authController.post("/registerStudio", async (req, res) => {
 authController.post("/loginUser", async (req, res) => {
     const { email, password } = req.body;
     try {
-        const token = await authService.loginUser(email, password);
-        res.json({ token });
+        const payload = await authService.loginUser(email, password);
+        res.json(payload);
     } catch (err) {
-        res.status(400).send(getErrorMessage(err));
+        res.status(400).json({
+            message: getErrorMessage(err)
+        });
     }
 });
 
 authController.post("/loginStudio", async (req, res) => {
     const { email, password } = req.body;
     try {
-        const token = await authService.loginStudio(email, password);
-        localStorage.setItem("isStudio", true);
-        res.json({ token });
+        const payload = await authService.loginStudio(email, password);
+        res.json(payload);
     } catch (err) {
-        res.status(400).send(getErrorMessage(err));
+        res.status(400).json({
+            message: getErrorMessage(err)
+        });
     }
 });
 

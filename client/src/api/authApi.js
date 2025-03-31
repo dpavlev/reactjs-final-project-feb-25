@@ -26,6 +26,29 @@ export const useRegister = () => {
     return { register };
 };
 
+export const useLogin = () => {
+    const { userLoginHandler } = useContext(UserContext);
+    const login = async (data) => {
+        try {
+            validateForm(data);
+            const endpoint = data.loginType === "forUser" ? "/loginUser" : "/loginStudio";
+
+            const result = await request("POST", endpoint, data);
+
+            for (const key in result) {
+                localStorage.setItem(key, result[key]);
+            }
+            userLoginHandler(result);
+
+            return;
+        } catch (err) {
+            return err.message;
+        }
+    };
+
+    return { login };
+};
+
 export const useLogout = () => {
     const { id, userLogoutHandler } = useContext(UserContext);
 

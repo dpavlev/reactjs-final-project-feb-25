@@ -70,8 +70,7 @@ async function loginUser(email, password) {
         email: user.email
     };
 
-    const token = jwt.sign(payload, "BESTKEPTSECRET");
-    return token;
+    return payload;
 }
 
 async function loginStudio(email, password) {
@@ -85,10 +84,10 @@ async function loginStudio(email, password) {
     }
     const payload = {
         id: studio._id,
-        email: studio.email
+        email: studio.email,
+        isStudio: true
     };
-    const token = jwt.sign(payload, "BESTKEPTSECRET");
-    return token;
+    return payload;
 }
 
 export default {

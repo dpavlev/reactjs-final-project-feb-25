@@ -56,9 +56,9 @@ export default function Register() {
         }
     }
 
-    // if (localStorage.getItem("id")) {
-    //     return <Navigate to="/" />;
-    // }
+    if (localStorage.getItem("id")) {
+        return <Navigate to="/" />;
+    }
 
     return (
         <>

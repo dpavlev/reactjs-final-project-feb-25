@@ -10,9 +10,10 @@ import UserProfile from "./views/UserProfile";
 import Dashboard from "./views/Dashboard";
 import Logout from "./views/Logout";
 import { UserContext } from "./contexts/UserContext";
+import initialAuthData from "./utils/initialAuthData";
 
 function App() {
-    const [authData, setAuthData] = useState({});
+    const [authData, setAuthData] = useState(initialAuthData());
 
     const userLoginHandler = (resultData) => {
         setAuthData(resultData);

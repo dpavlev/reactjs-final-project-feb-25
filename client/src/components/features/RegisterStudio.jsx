@@ -1,5 +1,5 @@
-import formsStyles from "../../views/Forms.module.css";
-import authStyles from "../../views/AuthPages.module.css";
+import formsStyles from "../../styles/Forms.module.css";
+import authStyles from "../../styles/AuthPages.module.css";
 
 export default function RegisterStudio({ values, handleChange }) {
     return (

@@ -43,7 +43,8 @@ async function registerStudio(userData) {
         const newStudio = await StudioAcc.create(userData);
         const payload = {
             id: newStudio._id,
-            email: newStudio.email
+            email: newStudio.email,
+            isStudio: true
         };
         return payload;
     } catch (err) {

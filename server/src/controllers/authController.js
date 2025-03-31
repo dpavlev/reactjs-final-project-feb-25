@@ -49,9 +49,13 @@ authController.post("/loginStudio", async (req, res) => {
     }
 });
 
-authController.post("/logout", async (req, res) => {
-    localStorage.removeItem("isStudio");
-    localStorage.removeItem("token");
+authController.get("/logout", async (req, res) => {
+    const token = req.headers;
+    console.log(token);
+    if (!token) {
+        res.status(401).send("Unauthorized");
+        return;
+    }
     res.end();
 });
 

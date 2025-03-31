@@ -1,6 +1,6 @@
 import { useState } from "react";
 import FormButton from "../components/common/FormButton";
-import formsStyles from "./Forms.module.css";
+import formsStyles from "../styles/Forms.module.css";
 import validateForm from "../validators/formValidator";
 
 export default function AddStudio() {

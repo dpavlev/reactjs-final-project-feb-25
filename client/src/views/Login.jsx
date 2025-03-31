@@ -1,8 +1,8 @@
-import FormButton from "../components/common/FormButton";
-import { Navigate } from "react-router";
-import authStyles from "./AuthPages.module.css";
-import formsStyles from "./Forms.module.css";
 import { useState } from "react";
+import { Navigate } from "react-router";
+import FormButton from "../components/common/FormButton";
+import authStyles from "../styles/AuthPages.module.css";
+import formsStyles from "../styles/Forms.module.css";
 
 export default function Login() {
     //TODO: Add login functionality

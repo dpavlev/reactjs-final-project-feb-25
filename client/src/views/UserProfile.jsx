@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import userProfileStyles from "./userProfile.module.css";
-import formsStyles from "./Forms.module.css";
+import userProfileStyles from "../styles/userProfile.module.css";
+import formsStyles from "../styles/Forms.module.css";
 import FormButton from "../components/common/FormButton";
 
 export default function UserProfile() {

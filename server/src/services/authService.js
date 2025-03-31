@@ -4,13 +4,20 @@ import User from "../models/User.js";
 import StudioAcc from "../models/StudioAcc.js";
 
 async function registerUser(userData) {
+    const userEmailCount = await User.countDocuments({ email: userData.email });
+    if (userEmailCount > 0) {
+        throw new Error("Email already exists!");
+    }
+
+    const userPhoneCount = await User.countDocuments({ phoneNumber: userData.phoneNumber });
+    if (userPhoneCount > 0) {
+        throw new Error("Phone number already exists!");
+    }
+
     if (userData.password !== userData.rePassword) {
         throw new Error("Passwords mismatch!");
     }
-    const userEmailCount = await User.countDocuments({ email: userData.email });
-    if (userEmailCount > 0) {
-        throw new Error("Email exists!");
-    }
+
     try {
         const newUser = await User.create(userData);
         const payload = {
@@ -18,10 +25,29 @@ async function registerUser(userData) {
             name: `${newUser.firstName} ${newUser.lastName}`,
             email: newUser.email
         };
-        const token = jwt.sign(payload, "BESTKEPTSECRET");
-        return token;
+        return payload;
     } catch (err) {
-        console.log(err);
+        throw new Error("Error creating user: " + err.message);
+    }
+}
+
+async function registerStudio(userData) {
+    const studioEmailCount = await StudioAcc.countDocuments({ email: userData.email });
+    if (studioEmailCount > 0) {
+        throw new Error("Email exists!");
+    }
+    if (userData.password !== userData.rePassword) {
+        throw new Error("Passwords mismatch!");
+    }
+    try {
+        const newStudio = await StudioAcc.create(userData);
+        const payload = {
+            id: newStudio._id,
+            email: newStudio.email
+        };
+        return payload;
+    } catch (err) {
+        throw new Error("Error creating studio!");
     }
 }
 
@@ -62,27 +88,6 @@ async function loginStudio(email, password) {
     };
     const token = jwt.sign(payload, "BESTKEPTSECRET");
     return token;
-}
-
-async function registerStudio(userData) {
-    if (userData.password !== userData.rePassword) {
-        throw new Error("Passwords mismatch!");
-    }
-    const studioEmailCount = await StudioAcc.countDocuments({ email: userData.email });
-    if (studioEmailCount > 0) {
-        throw new Error("Email exists!");
-    }
-    try {
-        const newStudio = await StudioAcc.create(userData);
-        const payload = {
-            id: newStudio._id,
-            email: newStudio.email
-        };
-        const token = jwt.sign(payload, "BESTKEPTSECRET");
-        return token;
-    } catch (err) {
-        console.log(err);
-    }
 }
 
 export default {

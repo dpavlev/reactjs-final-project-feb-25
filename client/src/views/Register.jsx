@@ -1,15 +1,17 @@
-import FormButton from "../components/common/FormButton";
 import { Navigate } from "react-router";
+import { useState } from "react";
+import Notification from "../components/layout/Notification";
+import RegisterStudio from "../components/features/RegisterStudio";
+import RegisterUser from "../components/features/RegisterUser";
+import FormButton from "../components/common/FormButton";
 import authStyles from "./AuthPages.module.css";
 import formsStyles from "./Forms.module.css";
-import { useState } from "react";
-import RegisterUser from "../components/features/RegisterUser";
-import RegisterStudio from "../components/features/RegisterStudio";
-import validateForm from "../validators/formValidator";
-import Notification from "../components/layout/Notification";
+import { useRegister } from "../api/authApi";
+// import validateForm from "../validators/formValidator";
+// import { useRegister } from "../api/authApi";
 
 export default function Register() {
-    //TODO: Add register functionality
+    const [message, setMessage] = useState("");
     const [loginType, setLoginType] = useState("forUser");
     const [userValues, setUserValues] = useState({
         firstName: "",
@@ -24,7 +26,7 @@ export default function Register() {
         password: "",
         rePassword: ""
     });
-    const [message, setMessage] = useState("");
+    const { register } = useRegister();
 
     const handleChange = (e) => {
         if (e.target.name === "loginType") {
@@ -43,27 +45,20 @@ export default function Register() {
         }
     };
 
-    function submitForm(e) {
+    async function submitForm(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData.entries());
-        try {
-            validateForm(data);
-            console.log(userValues, studioValues);
-        } catch (error) {
-            setMessage(error.message);
-            setTimeout(() => {
-                setMessage("");
-            }, 3000);
+        const errMessage = await register(data);
+        if (errMessage) {
+            setMessage(errMessage);
             return;
-        } catch (err) {
-            setMessage(err.message);
         }
     }
 
-    if (localStorage.getItem("token")) {
-        return <Navigate to="/" />;
-    }
+    // if (localStorage.getItem("id")) {
+    //     return <Navigate to="/" />;
+    // }
 
     return (
         <>

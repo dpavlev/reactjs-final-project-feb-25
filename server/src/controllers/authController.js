@@ -4,6 +4,30 @@ import { getErrorMessage } from "../utils/errorUtils.js";
 
 const authController = Router();
 
+authController.post("/registerUser", async (req, res) => {
+    const userData = req.body;
+    try {
+        const payload = await authService.registerUser(userData);
+        res.json(payload);
+    } catch (err) {
+        res.status(400).json({
+            message: getErrorMessage(err)
+        });
+    }
+});
+
+authController.post("/registerStudio", async (req, res) => {
+    const userData = req.body;
+    try {
+        const payload = await authService.registerStudio(userData);
+        res.json(payload);
+    } catch (err) {
+        res.status(400).json({
+            message: getErrorMessage(err)
+        });
+    }
+});
+
 authController.post("/loginUser", async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -12,22 +36,6 @@ authController.post("/loginUser", async (req, res) => {
     } catch (err) {
         res.status(400).send(getErrorMessage(err));
     }
-});
-
-authController.post("/registerUser", async (req, res) => {
-    const userData = req.body;
-    try {
-        const token = await authService.registerUser(userData);
-        res.json({ token });
-    } catch (err) {
-        res.status(400).send(getErrorMessage(err));
-    }
-});
-
-authController.post("/logout", async (req, res) => {
-    localStorage.removeItem("isStudio");
-    localStorage.removeItem("token");
-    res.end();
 });
 
 authController.post("/loginStudio", async (req, res) => {
@@ -41,15 +49,10 @@ authController.post("/loginStudio", async (req, res) => {
     }
 });
 
-authController.post("/registerStudio", async (req, res) => {
-    const userData = req.body;
-    try {
-        const token = await authService.registerStudio(userData);
-        localStorage.setItem("isStudio", true);
-        res.json({ token });
-    } catch (err) {
-        res.status(400).send(getErrorMessage(err));
-    }
+authController.post("/logout", async (req, res) => {
+    localStorage.removeItem("isStudio");
+    localStorage.removeItem("token");
+    res.end();
 });
 
 export default authController;

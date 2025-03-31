@@ -1,6 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
-import cookieParser from "cookie-parser";
+import cors from "cors";
 import routes from "./routes.js";
 
 const app = express();
@@ -14,6 +14,11 @@ try {
     console.error(err.message);
 }
 
+app.use(
+    cors({
+        origin: "http://localhost:5173"
+    })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

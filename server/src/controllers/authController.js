@@ -50,8 +50,7 @@ authController.post("/loginStudio", async (req, res) => {
 });
 
 authController.get("/logout", async (req, res) => {
-    const token = req.headers;
-    console.log(token);
+    const token = req.headers.authorization;
     if (!token) {
         res.status(401).send("Unauthorized");
         return;

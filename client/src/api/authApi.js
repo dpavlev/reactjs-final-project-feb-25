@@ -28,7 +28,6 @@ export const useRegister = () => {
 
 export const useLogout = () => {
     const { id, userLogoutHandler } = useContext(UserContext);
-    console.log(id);
 
     useEffect(() => {
         if (!id) {
@@ -45,6 +44,6 @@ export const useLogout = () => {
     }, [id, userLogoutHandler]);
 
     return {
-        isLoggedOut: !!id
+        isLoggedOut: !id
     };
 };

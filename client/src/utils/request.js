@@ -9,7 +9,7 @@ const request = async (method, url, data, options = {}) => {
             body: JSON.stringify(data)
         };
     }
-    const response = await fetch(`http://localhost:5000/auth${url}`, {
+    const response = await fetch(`http://localhost:5000/${url}`, {
         method,
         ...options
     });

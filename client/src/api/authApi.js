@@ -8,7 +8,7 @@ export const useRegister = () => {
     const register = async (data) => {
         try {
             validateForm(data);
-            const endpoint = data.loginType === "forUser" ? "/registerUser" : "/registerStudio";
+            const endpoint = data.loginType === "forUser" ? "auth/registerUser" : "auth/registerStudio";
 
             const result = await request("POST", endpoint, data);
 
@@ -31,7 +31,7 @@ export const useLogin = () => {
     const login = async (data) => {
         try {
             validateForm(data);
-            const endpoint = data.loginType === "forUser" ? "/loginUser" : "/loginStudio";
+            const endpoint = data.loginType === "forUser" ? "auth/loginUser" : "auth/loginStudio";
 
             const result = await request("POST", endpoint, data);
 
@@ -63,7 +63,7 @@ export const useLogout = () => {
             }
         };
 
-        request("GET", "/logout", null, options).then(userLogoutHandler);
+        request("GET", "auth/logout", null, options).then(userLogoutHandler);
     }, [id, userLogoutHandler]);
 
     return {

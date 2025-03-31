@@ -5,48 +5,85 @@ import formsStyles from "./Forms.module.css";
 import { useState } from "react";
 import RegisterUser from "../components/features/RegisterUser";
 import RegisterStudio from "../components/features/RegisterStudio";
+import validateForm from "../validators/formValidator";
+import Notification from "../components/layout/Notification";
 
 export default function Register() {
     //TODO: Add register functionality
-    const [values, setValues] = useState({
+    const [loginType, setLoginType] = useState("forUser");
+    const [userValues, setUserValues] = useState({
         firstName: "",
         lastName: "",
         email: "",
         phoneNumber: "",
         password: "",
-        rePassword: "",
-        loginType: "forUser"
+        rePassword: ""
     });
+    const [studioValues, setStudioValues] = useState({
+        email: "",
+        password: "",
+        rePassword: ""
+    });
+    const [message, setMessage] = useState("");
 
     const handleChange = (e) => {
-        setValues({
-            ...values,
-            [e.target.name]: e.target.value
-        });
+        if (e.target.name === "loginType") {
+            setLoginType(e.target.value);
+        }
+        if (loginType === "forUser") {
+            setUserValues({
+                ...userValues,
+                [e.target.name]: e.target.value
+            });
+        } else {
+            setStudioValues({
+                ...studioValues,
+                [e.target.name]: e.target.value
+            });
+        }
     };
+
+    function submitForm(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+        try {
+            validateForm(data);
+            console.log(userValues, studioValues);
+        } catch (error) {
+            setMessage(error.message);
+            setTimeout(() => {
+                setMessage("");
+            }, 3000);
+            return;
+        }
+    }
 
     if (localStorage.getItem("token")) {
         return <Navigate to="/" />;
     }
 
     return (
-        <main className={formsStyles.main}>
-            <div className={formsStyles.loginContainer}>
-                <form action="" className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>
-                    <div className={authStyles.loginType}>
-                        <label htmlFor="forUser" className={authStyles.radioContainer}>
-                            <input type="radio" name="loginType" id="forUser" value="forUser" checked={values.loginType === "forUser"} onChange={handleChange} />
-                            <span className={authStyles.radioLabel}>Register User</span>
-                        </label>
-                        <label htmlFor="forBusiness" className={authStyles.radioContainer}>
-                            <input type="radio" name="loginType" id="forBusiness" value="forBusiness" checked={values.loginType === "forBusiness"} onChange={handleChange} />
-                            <span className={authStyles.radioLabel}>Register Studio</span>
-                        </label>
-                    </div>
-                    {values.loginType === "forUser" ? <RegisterUser values={values} handleChange={handleChange} /> : <RegisterStudio values={values} handleChange={handleChange} />}
-                    <FormButton text="Register" />
-                </form>
-            </div>
-        </main>
+        <>
+            <Notification message={message} />
+            <main className={formsStyles.main}>
+                <div className={formsStyles.loginContainer}>
+                    <form onSubmit={submitForm} className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>
+                        <div className={authStyles.loginType}>
+                            <label htmlFor="forUser" className={authStyles.radioContainer}>
+                                <input type="radio" name="loginType" id="forUser" value="forUser" checked={loginType === "forUser"} onChange={handleChange} />
+                                <span className={authStyles.radioLabel}>Register User</span>
+                            </label>
+                            <label htmlFor="forBusiness" className={authStyles.radioContainer}>
+                                <input type="radio" name="loginType" id="forBusiness" value="forBusiness" checked={loginType === "forBusiness"} onChange={handleChange} />
+                                <span className={authStyles.radioLabel}>Register Studio</span>
+                            </label>
+                        </div>
+                        {loginType === "forUser" ? <RegisterUser values={userValues} handleChange={handleChange} /> : <RegisterStudio values={studioValues} handleChange={handleChange} />}
+                        <FormButton text="Register" />
+                    </form>
+                </div>
+            </main>
+        </>
     );
 }

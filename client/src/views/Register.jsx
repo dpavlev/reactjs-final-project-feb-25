@@ -56,6 +56,8 @@ export default function Register() {
                 setMessage("");
             }, 3000);
             return;
+        } catch (err) {
+            setMessage(err.message);
         }
     }
 
@@ -65,7 +67,7 @@ export default function Register() {
 
     return (
         <>
-            <Notification message={message} />
+            <Notification message={message} onClose={() => setMessage("")} />
             <main className={formsStyles.main}>
                 <div className={formsStyles.loginContainer}>
                     <form onSubmit={submitForm} className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>

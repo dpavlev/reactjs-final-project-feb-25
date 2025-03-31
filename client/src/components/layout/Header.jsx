@@ -20,9 +20,9 @@ export default function Header() {
                 <Link to="/userProfile" className="button">
                     Profile
                 </Link>
-                <a href="/views/register.html" className="button">
+                <Link to="/logout" className="button">
                     Logout
-                </a>
+                </Link>
             </nav>
         </header>
     );

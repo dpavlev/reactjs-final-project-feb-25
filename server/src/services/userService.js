@@ -20,6 +20,20 @@ async function getUser(id) {
         });
 }
 
+async function deleteUser(id) {
+    return User.findByIdAndDelete(id)
+        .then((user) => {
+            if (!user) {
+                throw new Error("User not found!");
+            }
+            return;
+        })
+        .catch((err) => {
+            throw new Error("Error deleting user: " + err.message);
+        });
+}
+
 export default {
+    deleteUser,
     getUser
 };

@@ -9,3 +9,26 @@ export function useFindUser(id) {
     }, [id]);
     return { userData };
 }
+
+export function useDeleteUser(id) {
+    const { userLogoutHandler } = useContext(UserContext);
+    const [isDeleted, setIsDeleted] = useState(false);
+
+    useEffect(() => {
+        const deleteUser = async () => {
+            try {
+                await request("DELETE", `user/${id}`);
+                userLogoutHandler();
+                setIsDeleted(true);
+            } catch (err) {
+                console.error(err.message);
+            }
+        };
+
+        if (id) {
+            deleteUser();
+        }
+    }, [id, userLogoutHandler]);
+
+    return { isDeleted };
+}

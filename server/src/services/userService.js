@@ -20,6 +20,35 @@ async function getUser(id) {
         });
 }
 
+async function updateUser(id, userData) {
+    return User.findOneAndUpdate(
+        { _id: id },
+        {
+            $set: {
+                email: userData.email,
+                firstName: userData.firstName,
+                lastName: userData.lastName,
+                phoneNumber: userData.phoneNumber
+            }
+        },
+        { new: true }
+    )
+        .then((user) => {
+            if (!user) {
+                throw new Error("User not found!");
+            }
+            const payload = {
+                id: user._id,
+                name: `${user.firstName} ${user.lastName}`,
+                email: user.email
+            };
+            return payload;
+        })
+        .catch((err) => {
+            throw new Error("Error updating user: " + err.message);
+        });
+}
+
 async function deleteUser(id) {
     return User.findByIdAndDelete(id)
         .then((user) => {
@@ -35,5 +64,6 @@ async function deleteUser(id) {
 
 export default {
     deleteUser,
-    getUser
+    getUser,
+    updateUser
 };

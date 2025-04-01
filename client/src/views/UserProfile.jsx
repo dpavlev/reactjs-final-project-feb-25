@@ -5,7 +5,7 @@ import FormButton from "../components/common/FormButton";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
 import Notification from "../components/layout/Notification";
-import { useFindUser } from "../api/userApi";
+import { useFindUser, useUpdateUser } from "../api/userApi";
 
 export default function UserProfile() {
     const { id } = useContext(UserContext);
@@ -17,6 +17,7 @@ export default function UserProfile() {
     });
     const [message, setMessage] = useState(null);
     const { userData } = useFindUser(id);
+    const { update } = useUpdateUser(id);
 
     useEffect(() => {
         if (userData) {
@@ -28,6 +29,19 @@ export default function UserProfile() {
             });
         }
     }, [userData]);
+
+    async function submitForm(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+        const errMessage = await update(data);
+        if (errMessage) {
+            setMessage(errMessage);
+            return;
+        } else {
+            setMessage("Profile updated successfully!");
+        }
+    }
 
     const handleChange = (e) => {
         setValues({
@@ -41,7 +55,7 @@ export default function UserProfile() {
             <Notification message={message} onClose={() => setMessage(null)} />
             <main className={formsStyles.main}>
                 <div className={formsStyles.loginContainer}>
-                    <form action="" className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>
+                    <form onSubmit={submitForm} className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>
                         <div className={userProfileStyles.nameContainer}>
                             <span>
                                 <label htmlFor="firstName">First name</label>

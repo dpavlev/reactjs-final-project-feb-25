@@ -16,6 +16,19 @@ userController.get("/:id", async (req, res) => {
     }
 });
 
+userController.put("/:id", async (req, res) => {
+    const id = req.params.id;
+    const userData = req.body;
+    try {
+        const updatedUser = await userService.updateUser(id, userData);
+        res.json(updatedUser);
+    } catch (err) {
+        res.status(400).json({
+            message: getErrorMessage(err)
+        });
+    }
+});
+
 userController.delete("/:id", async (req, res) => {
     const id = req.params.id;
     try {

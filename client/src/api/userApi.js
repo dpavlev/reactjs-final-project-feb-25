@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import request from "../utils/request";
 import { UserContext } from "../contexts/UserContext";
+import validateForm from "../validators/formValidator";
 
 export function useFindUser(id) {
     const [userData, setUserData] = useState({});
@@ -8,6 +9,27 @@ export function useFindUser(id) {
         request("GET", `user/${id}`).then(setUserData);
     }, [id]);
     return { userData };
+}
+
+export function useUpdateUser(id) {
+    const { userLoginHandler } = useContext(UserContext);
+    const update = async (data) => {
+        try {
+            validateForm(data);
+            const result = await request("PUT", `user/${id}`, data);
+
+            for (const key in result) {
+                localStorage.setItem(key, result[key]);
+            }
+            userLoginHandler(result);
+
+            return;
+        } catch (err) {
+            return err.message;
+        }
+    };
+
+    return { update };
 }
 
 export function useDeleteUser(id) {

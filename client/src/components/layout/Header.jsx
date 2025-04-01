@@ -1,6 +1,9 @@
 import { Link } from "react-router";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 export default function Header() {
+    const { id, isStudio } = useContext(UserContext);
     return (
         <header className="header">
             <Link to="/" className="header-logo-background">

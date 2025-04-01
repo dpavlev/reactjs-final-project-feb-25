@@ -1,4 +1,4 @@
-import formsStyles from "../../views/Forms.module.css";
+import formsStyles from "../../styles/Forms.module.css";
 
 export default function RegisterUser({ values, handleChange }) {
     return (

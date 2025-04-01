@@ -1,0 +1,10 @@
+.notification {
+    position: fixed;
+    top: 110px;
+    left: 75%;
+    transform: translateX(-50%);
+    background: red;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 10px;
+}

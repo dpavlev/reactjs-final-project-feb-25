@@ -12,6 +12,7 @@ import Logout from "./views/Logout";
 import { UserContext } from "./contexts/UserContext";
 import initialAuthData from "./utils/initialAuthData";
 import DeleteUser from "./views/DeleteUser";
+import StudioView from "./views/StudioView";
 
 function App() {
     const [authData, setAuthData] = useState(initialAuthData());
@@ -35,14 +36,15 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/addStudio" element={<AddStudio />} />
+                <Route path="/studioView" element={<StudioView />} />
                 {authData.id && (
                     <>
+                        <Route path="/addStudio" element={<AddStudio />} />
                         <Route path="/userProfile" element={<UserProfile />} />
                         <Route path="/deleteUser/:id" element={<DeleteUser />} />
+                        <Route path="/logout" element={<Logout />} />
                     </>
                 )}
-                <Route path="/logout" element={<Logout />} />
                 {/* TODO: Add error page */}
                 <Route path="*" element={<Navigate to={"/"} />} />
             </Routes>

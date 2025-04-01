@@ -10,6 +10,9 @@ export default function Header() {
                 <img src="/images/logo_rectangle.png" alt="StyleGo" className="header-logo-size" />
             </Link>
             <nav className="nav hide-on-small">
+                <Link to="/dashboard" className="button">
+                    Dashboard
+                </Link>
                 {id ? (
                     <>
                         {isStudio ? (

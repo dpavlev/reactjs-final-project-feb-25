@@ -7,22 +7,34 @@ export default function Header() {
                 <img src="/images/logo_rectangle.png" alt="StyleGo" className="header-logo-size" />
             </Link>
             <nav className="nav hide-on-small">
-                {/* <div className="searchbar-container">
-                    <i className="fa-solid fa-magnifying-glass magglass"></i>
-                    <input className="searchbar" type="search" name="search" placeholder="Search" />
-                </div> */}
-                <Link to="/login" className="button">
-                    Login
+                <Link to="/dashboard" className="button">
+                    Dashboard
                 </Link>
-                <Link to="/register" className="button">
-                    Register
-                </Link>
-                <Link to="/userProfile" className="button">
-                    Profile
-                </Link>
-                <a href="/views/register.html" className="button">
-                    Logout
-                </a>
+                {id ? (
+                    <>
+                        {isStudio ? (
+                            <Link to="/studioView" className="button">
+                                Studio Profile
+                            </Link>
+                        ) : (
+                            <Link to="/userProfile" className="button">
+                                Profile
+                            </Link>
+                        )}
+                        <Link to="/logout" className="button">
+                            Logout
+                        </Link>
+                    </>
+                ) : (
+                    <>
+                        <Link to="/login" className="button">
+                            Login
+                        </Link>
+                        <Link to="/register" className="button">
+                            Register
+                        </Link>
+                    </>
+                )}
             </nav>
         </header>
     );

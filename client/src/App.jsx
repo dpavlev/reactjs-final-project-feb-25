@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route } from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import Home from "./views/Home";
@@ -11,6 +11,7 @@ import Dashboard from "./views/Dashboard";
 import Logout from "./views/Logout";
 import { UserContext } from "./contexts/UserContext";
 import initialAuthData from "./utils/initialAuthData";
+import DeleteUser from "./views/DeleteUser";
 
 function App() {
     const [authData, setAuthData] = useState(initialAuthData());
@@ -35,8 +36,15 @@ function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/addStudio" element={<AddStudio />} />
-                <Route path="/userProfile" element={<UserProfile />} />
+                {authData.id && (
+                    <>
+                        <Route path="/userProfile" element={<UserProfile />} />
+                        <Route path="/deleteUser/:id" element={<DeleteUser />} />
+                    </>
+                )}
                 <Route path="/logout" element={<Logout />} />
+                {/* TODO: Add error page */}
+                <Route path="*" element={<Navigate to={"/"} />} />
             </Routes>
             <Footer />
         </UserContext.Provider>

@@ -17,3 +17,15 @@ studiosController.get("/:id", async (req, res) => {
         res.status(404).json({ message: getErrorMessage(err) });
     }
 });
+
+studiosController.post("/create", async (req, res) => {
+    const studioData = req.body;
+    try {
+        const newStudio = await studiosService.createStudio(studioData);
+        res.json(newStudio);
+    } catch (err) {
+        res.status(400).json({ message: getErrorMessage(err) });
+    }
+});
+
+export default studiosController;

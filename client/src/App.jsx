@@ -39,7 +39,7 @@ function App() {
                 <Route path="/studioView/:id" element={<StudioView />} />
                 {authData.id && (
                     <>
-                        <Route path="/addStudio" element={<AddStudio />} />
+                        {authData.isStudio && <Route path="/addStudio" element={<AddStudio />} />}
                         <Route path="/userProfile" element={<UserProfile />} />
                         <Route path="/deleteUser/:id" element={<DeleteUser />} />
                         <Route path="/logout" element={<Logout />} />

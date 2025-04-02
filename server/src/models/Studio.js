@@ -1,36 +1,44 @@
 import { Schema, model } from "mongoose";
 
+const serviceSchema = new Schema(
+    {
+        name: { type: String, required: true },
+        price: { type: Number, required: true }
+    },
+    { _id: false }
+);
+
 const studioSchema = new Schema({
-    name: {
+    studioName: {
         type: String,
         required: true,
         unique: true,
         minLength: 3
     },
-    address: {
+    studioAddress: {
         type: String,
         required: true,
         unique: false,
         minLength: 3
     },
-    phone: {
+    studioPhone: {
         type: String,
         required: true,
         unique: true,
         minLength: 10
     },
-    description: {
+    studioDescription: {
         type: String,
         required: true,
         unique: false
     },
-    imageUrl: {
+    studioImg: {
         type: String,
         required: true,
         unique: false
     },
     services: {
-        type: [{ String: Number }],
+        type: [serviceSchema],
         required: true
     },
     studioAcc: {

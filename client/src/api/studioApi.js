@@ -6,5 +6,10 @@ export function useStudioApi() {
         console.log(data);
     };
 
-    return { getOneStudio };
+    const createStudio = async (studioData) => {
+        const data = await request("POST", "studios/create", studioData);
+        return data;
+    };
+
+    return { getOneStudio, createStudio };
 }

@@ -1,11 +1,25 @@
 import studioStyles from "../styles/StudioView.module.css";
 import Service from "../components/common/Service";
 import FormButton from "../components/common/FormButton";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { UserContext } from "../contexts/UserContext";
+import { useParams } from "react-router";
+import { useStudioApi } from "../api/studioApi";
 
 export default function StudioView() {
     const { isStudio } = useContext(UserContext);
+    const { id } = useParams();
+    const { getOneStudio } = useStudioApi();
+
+    useEffect(() => {
+        getOneStudio(id)
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }, [id, getOneStudio]);
 
     return (
         <main className={studioStyles.mainElem}>

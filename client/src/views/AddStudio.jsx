@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import FormButton from "../components/common/FormButton";
 import formsStyles from "../styles/Forms.module.css";
-import validateForm from "../validators/formValidator";
+import Notification from "../components/layout/Notification";
+import { useStudioApi } from "../api/studioApi";
+import { UserContext } from "../contexts/UserContext";
 
 export default function AddStudio() {
-    // TODO: Add validation to the form
-    // TODO: Check if you can export the logic to a separate file
+    const { createStudio } = useStudioApi();
+    const { id } = useContext(UserContext);
     const [message, setMessage] = useState("");
     const [values, setValues] = useState({
         studioName: "",
@@ -42,15 +44,11 @@ export default function AddStudio() {
         }));
     };
 
-    const submitAction = () => {
-        // TODO: Send the data to the server
-        try {
-            validateForm(values);
-        } catch (error) {
-            setMessage(error.message);
-            setTimeout(() => {
-                setMessage("");
-            }, 3000);
+    const submitAction = async (e) => {
+        e.preventDefault();
+        const errMessage = await createStudio({ ...values, studioAcc: id });
+        if (errMessage) {
+            setMessage(errMessage);
             return;
         }
     };
@@ -60,7 +58,7 @@ export default function AddStudio() {
             <Notification message={message} />
             <main className={formsStyles.main}>
                 <div className={formsStyles.loginContainer}>
-                    <form action={submitAction} className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>
+                    <form onSubmit={submitAction} className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>
                         <input type="text" name="studioName" id="studioName" placeholder="Име на студиото..." className={formsStyles.formDiv} value={values.studioName} onChange={updateServices} />
                         <input type="text" name="studioAddress" id="studioAddress" placeholder="Адрес..." className={formsStyles.formDiv} value={values.studioAddress} onChange={updateServices} />
                         <input type="tel" name="studioPhone" id="studioPhone" placeholder="Телефон: +359 8..." className={formsStyles.formDiv} value={values.studioPhone} onChange={updateServices} />

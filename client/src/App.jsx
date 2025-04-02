@@ -36,10 +36,10 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/studioView" element={<StudioView />} />
+                <Route path="/studioView/:id" element={<StudioView />} />
                 {authData.id && (
                     <>
-                        <Route path="/addStudio" element={<AddStudio />} />
+                        {authData.isStudio && <Route path="/addStudio" element={<AddStudio />} />}
                         <Route path="/userProfile" element={<UserProfile />} />
                         <Route path="/deleteUser/:id" element={<DeleteUser />} />
                         <Route path="/logout" element={<Logout />} />

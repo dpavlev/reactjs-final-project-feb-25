@@ -32,6 +32,10 @@ const studioSchema = new Schema({
     services: {
         type: [{ String: Number }],
         required: true
+    },
+    studioAcc: {
+        type: Schema.Types.ObjectId,
+        ref: "StudioAcc"
     }
 });
 

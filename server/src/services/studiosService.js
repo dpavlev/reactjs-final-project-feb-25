@@ -5,7 +5,7 @@ import User from "../models/User.js";
 async function createStudio(studioData) {
     try {
         const newStudio = await Studio.create(studioData);
-        await StudioAcc.findByIdAndUpdate(studioData.studioAcc, { $set: { studio: newStudio._id } });
+        await StudioAcc.findByIdAndUpdate(studioData.studioAcc, { $push: { studio: newStudio._id } });
         return newStudio;
     } catch (err) {
         throw new Error("Error creating studio: " + err.message);

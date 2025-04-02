@@ -4,11 +4,14 @@ import formsStyles from "../styles/Forms.module.css";
 import Notification from "../components/layout/Notification";
 import { useStudioApi } from "../api/studioApi";
 import { UserContext } from "../contexts/UserContext";
+import { Navigate } from "react-router";
 
 export default function AddStudio() {
     const { createStudio } = useStudioApi();
     const { id } = useContext(UserContext);
     const [message, setMessage] = useState("");
+    const [redirect, setRedirect] = useState(false);
+    const [studioId, setStudioId] = useState(null);
     const [values, setValues] = useState({
         studioName: "",
         studioAddress: "",
@@ -46,16 +49,22 @@ export default function AddStudio() {
 
     const submitAction = async (e) => {
         e.preventDefault();
-        const errMessage = await createStudio({ ...values, studioAcc: id });
-        if (errMessage) {
-            setMessage(errMessage);
-            return;
+        try {
+            const newStudio = await createStudio({ ...values, studioAcc: id });
+            setStudioId(newStudio._id);
+            setRedirect(true);
+        } catch (err) {
+            setMessage(err.message);
         }
     };
 
+    if (redirect && studioId) {
+        return <Navigate to={`/studioView/${studioId}`} />;
+    }
+
     return (
         <>
-            <Notification message={message} />
+            <Notification message={message} onClose={() => setMessage("")} />
             <main className={formsStyles.main}>
                 <div className={formsStyles.loginContainer}>
                     <form onSubmit={submitAction} className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>

@@ -18,13 +18,13 @@ const studioSchema = new Schema({
     studioAddress: {
         type: String,
         required: true,
-        unique: false,
+        unique: true,
         minLength: 3
     },
     studioPhone: {
         type: String,
         required: true,
-        unique: true,
+        unique: false,
         minLength: 10
     },
     studioDescription: {

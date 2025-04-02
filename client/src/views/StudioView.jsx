@@ -1,84 +1,42 @@
 import studioStyles from "../styles/StudioView.module.css";
+import Service from "../components/common/Service";
+import FormButton from "../components/common/FormButton";
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
 export default function StudioView() {
+    const { isStudio } = useContext(UserContext);
+
     return (
         <main className={studioStyles.mainElem}>
             <div className={`${studioStyles.mainHeaderContent} ${studioStyles.marginTop} ${studioStyles.marginLeft} ${studioStyles.marginRight}`}>
                 <div>
                     <img src="https://images.fresha.com/locations/location-profile-images/643848/2160592/e90e3cd2-04d2-4702-a946-6c0e38af9ab4.jpg?class=width-small" alt="" className="item-img" />
                 </div>
-                <div className="studio-information">
-                    <div className="studio-top-content">
+                <div className={studioStyles.studioInformation}>
+                    <div className={studioStyles.studioTopContent}>
                         <div>
                             <h1>Студио за красота Ангел</h1>
                             <h3 style={{ color: "gray" }}>София</h3>
                         </div>
-                        <button className="form-submit-btn book-btn">Запази час</button>
+                        {/* TODO: Check if this button is component */}
+                        <FormButton text="Запази час" className={studioStyles.bookBtn} />
                     </div>
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere, delectus sequi vel consequatur, cupiditate mollitia doloribus autem assumenda nostrum, quaerat architecto placeat. Nam eaque dolorum possimus temporibus porro dolorem quae accusantium rem laudantium, et iure odit tempore. Rerum, veniam! Culpa architecto minus dolorem numquam in, quae fuga a consectetur inventore?</p>
                 </div>
             </div>
-            <div className="main-content-wrapper">
-                <div className="main-content margin-left margin-right">
-                    <div className="servicesSection">
+            <div className={studioStyles.mainContentWrapper}>
+                <div className={`${studioStyles.mainContent} ${studioStyles.marginLeft} ${studioStyles.marginRight}`}>
+                    <div className={studioStyles.servicesSection}>
                         <h1>Услуги</h1>
                         <br />
                         <form action="">
                             <ul>
-                                <li>
-                                    <span>Test Service</span>
-                                    <div>
-                                        <span>Price&nbsp;</span>
-                                        <label htmlFor="selectService1" className="radioContainer">
-                                            <input type="checkbox" name="selectService1" id="selectService1" />
-                                            <span className="radioLabel">Select</span>
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span>Test Service</span>
-                                    <div>
-                                        <span>Price&nbsp;</span>
-                                        <label htmlFor="selectService2" className="radioContainer">
-                                            <input type="checkbox" name="selectService2" id="selectService2" />
-                                            <span className="radioLabel">Select</span>
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span>Test Service</span>
-                                    <div>
-                                        <span>Price&nbsp;</span>
-                                        <label htmlFor="selectService3" className="radioContainer">
-                                            <input type="checkbox" name="selectService3" id="selectService3" />
-                                            <span className="radioLabel">Select</span>
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span>Test Service</span>
-                                    <div>
-                                        <span>Price&nbsp;</span>
-                                        <label htmlFor="selectService4" className="radioContainer">
-                                            <input type="checkbox" name="selectService4" id="selectService4" />
-                                            <span className="radioLabel">Select</span>
-                                        </label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <span>Test Service</span>
-                                    <div>
-                                        <span>Price&nbsp;</span>
-                                        <label htmlFor="selectService5" className="radioContainer">
-                                            <input type="checkbox" name="selectService5" id="selectService5" />
-                                            <span className="radioLabel">Select</span>
-                                        </label>
-                                    </div>
-                                </li>
+                                <Service />
                             </ul>
                         </form>
                     </div>
-                    <div className="workingHours">
+                    <div className={studioStyles.workingHours}>
                         <h1>Работно време</h1>
                         <br />
                         <ul>
@@ -114,8 +72,8 @@ export default function StudioView() {
                     </div>
                 </div>
             </div>
-            <div className="owner-buttons margin-left margin-right margin-bottom">
-                <div>
+            <div className={`${studioStyles.bottomWrapper} ${studioStyles.marginLeft} ${studioStyles.marginRight} ${studioStyles.marginBottom}`}>
+                <div className={`${studioStyles.contacts}`}>
                     <h1>Контакти</h1>
                     <ul>
                         <li>
@@ -128,12 +86,18 @@ export default function StudioView() {
                         </li>
                     </ul>
                 </div>
+                {isStudio && (
+                    <div className={`${studioStyles.ownerButtonsWrapper}`}>
+                        <h1>Управление на услуги</h1>
+                        {/* <button className="addBtn">Добави услуга</button> */}
+                        <section className={studioStyles.ownerButtons}>
+                            <button className={studioStyles.editBtn}>Edit</button>
+                            <button className={studioStyles.deleteBtn}>Delete</button>
+                        </section>
+                    </div>
+                )}
             </div>
-            {/* <!-- <div className="owner-buttons margin-left margin-right margin-bottom">
-        <button className="editBtn">Edit</button>
-        <button className="deleteBtn">Delete</button>
-    </div> -->
-    <!-- <div className="login-container">
+            {/* <!-- <div className="login-container">
     </div> --> */}
         </main>
     );

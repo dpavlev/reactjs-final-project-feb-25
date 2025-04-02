@@ -104,7 +104,36 @@ h1 {
 }
 
 .radioContainer {
+    position: relative;
+    cursor: pointer;
     font-size: initial;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* margin-top: 15px; */
+    /* margin-bottom: 15px; */
+}
+
+.radioContainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    border-radius: 10px;
+    margin: 0;
+}
+
+.radioLabel {
+    background-color: white;
+    align-content: center;
+    border: medium outset #E9B4B1;
+    border-radius: 10px;
+    padding: 0.4em;
+    text-decoration: none;
+    color: #a5484d;
+    transition: 0.3s;
 }
 
 .radioLabel:hover {
@@ -146,10 +175,20 @@ h1 {
     align-items: center;
 }
 
+.ownerButtonsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    border: thin solid black;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
 .ownerButtons {
     display: flex;
-    gap: 10px;
-    justify-content: center;
+    /* gap: 10px; */
+    justify-content: space-around;
 }
 
 .editBtn {
@@ -180,4 +219,37 @@ h1 {
 .deleteBtn:hover {
     background-color: #B21807;
     cursor: pointer;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 15rem;
+    gap: 2rem;
+}
+
+.contacts ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+.contacts li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottomWrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 65vw;
 }

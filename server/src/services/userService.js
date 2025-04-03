@@ -1,3 +1,4 @@
+import StudioAcc from "../models/StudioAcc.js";
 import User from "../models/User.js";
 
 async function getUser(id) {
@@ -62,8 +63,22 @@ async function deleteUser(id) {
         });
 }
 
+async function getStudioAcc(ownerId) {
+    return StudioAcc.findById(ownerId)
+        .then((studioAcc) => {
+            if (!studioAcc) {
+                throw new Error("Studio account not found!");
+            }
+            return studioAcc;
+        })
+        .catch((err) => {
+            throw new Error("Error retrieving studio account: " + err.message);
+        });
+}
+
 export default {
     deleteUser,
     getUser,
-    updateUser
+    updateUser,
+    getStudioAcc
 };

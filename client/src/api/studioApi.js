@@ -11,5 +11,15 @@ export function useStudioApi() {
         return data;
     };
 
-    return { getOneStudio, createStudio };
+    const getOwner = async (ownerId) => {
+        try {
+            const data = await request("GET", `user/studioAccs/${ownerId}`);
+            return data;
+        } catch (err) {
+            console.error("Error fetching owner data:", err);
+            throw err;
+        }
+    };
+
+    return { getOneStudio, createStudio, getOwner };
 }

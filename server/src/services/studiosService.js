@@ -1,6 +1,5 @@
 import Studio from "../models/Studio.js";
 import StudioAcc from "../models/StudioAcc.js";
-import User from "../models/User.js";
 
 async function createStudio(studioData) {
     try {

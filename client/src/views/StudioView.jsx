@@ -1,7 +1,7 @@
 import studioStyles from "../styles/StudioView.module.css";
 import Service from "../components/common/Service";
 import FormButton from "../components/common/FormButton";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { useParams } from "react-router";
 import { useStudioApi } from "../api/studioApi";
@@ -9,34 +9,63 @@ import { useStudioApi } from "../api/studioApi";
 export default function StudioView() {
     const { isStudio } = useContext(UserContext);
     const { id } = useParams();
-    const { getOneStudio } = useStudioApi();
+    const { getOneStudio, getOwner } = useStudioApi();
+    const [ownerEmail, setOwnerEmail] = useState("");
+    const [values, setValues] = useState({
+        studioName: "",
+        studioAddress: "",
+        studioPhone: "",
+        studioDescription: "",
+        studioImg: null,
+        services: [],
+        ownerId: ""
+    });
 
     useEffect(() => {
         getOneStudio(id)
             .then((data) => {
-                console.log(data);
+                setValues({
+                    ...data,
+                    services: data.services.map((service) => ({
+                        name: service.name,
+                        price: service.price
+                    })),
+                    ownerId: data.studioAcc
+                });
             })
             .catch((err) => {
-                console.error(err);
+                console.log(err.message);
             });
     }, [id, getOneStudio]);
+
+    useEffect(() => {
+        if (ownerEmail) {
+            return;
+        }
+        getOwner(values.ownerId)
+            .then((data) => {
+                setOwnerEmail(data.email);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, [values.ownerId, getOwner, ownerEmail]);
 
     return (
         <main className={studioStyles.mainElem}>
             <div className={`${studioStyles.mainHeaderContent} ${studioStyles.marginTop} ${studioStyles.marginLeft} ${studioStyles.marginRight}`}>
-                <div>
-                    <img src="https://images.fresha.com/locations/location-profile-images/643848/2160592/e90e3cd2-04d2-4702-a946-6c0e38af9ab4.jpg?class=width-small" alt="" className="item-img" />
+                <div className={studioStyles.imageWrapper}>
+                    <img src={values.studioImg} alt={values.studioName} className={studioStyles.itemImg} />
                 </div>
                 <div className={studioStyles.studioInformation}>
                     <div className={studioStyles.studioTopContent}>
                         <div>
-                            <h1>Студио за красота Ангел</h1>
-                            <h3 style={{ color: "gray" }}>София</h3>
+                            <h1>{values.studioName}</h1>
+                            <h3 style={{ color: "gray" }}>{values.studioAddress}</h3>
                         </div>
-                        {/* TODO: Check if this button is component */}
                         <FormButton text="Запази час" className={studioStyles.bookBtn} />
                     </div>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere, delectus sequi vel consequatur, cupiditate mollitia doloribus autem assumenda nostrum, quaerat architecto placeat. Nam eaque dolorum possimus temporibus porro dolorem quae accusantium rem laudantium, et iure odit tempore. Rerum, veniam! Culpa architecto minus dolorem numquam in, quae fuga a consectetur inventore?</p>
+                    <p>{values.studioDescription}</p>
                 </div>
             </div>
             <div className={studioStyles.mainContentWrapper}>
@@ -46,7 +75,9 @@ export default function StudioView() {
                         <br />
                         <form action="">
                             <ul>
-                                <Service />
+                                {values.services.map((service, index) => (
+                                    <Service key={index} i={index} name={service.name} price={service.price} />
+                                ))}
                             </ul>
                         </form>
                     </div>
@@ -92,11 +123,11 @@ export default function StudioView() {
                     <ul>
                         <li>
                             <span>Телефон:</span>
-                            <span>0888888888</span>
+                            <span>{values.studioPhone}</span>
                         </li>
                         <li>
                             <span>Имейл:</span>
-                            <span>test@test.test</span>
+                            <span>{ownerEmail}</span>
                         </li>
                     </ul>
                 </div>

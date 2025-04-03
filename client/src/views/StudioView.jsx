@@ -22,7 +22,7 @@ export default function StudioView() {
     });
 
     useEffect(() => {
-        if (!values.studioName)
+        if (!values.studioName && id)
             getOneStudio(id)
                 .then((data) => {
                     setValues({

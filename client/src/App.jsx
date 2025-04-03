@@ -21,6 +21,10 @@ function App() {
         setAuthData(resultData);
     };
 
+    const addMoreAuthData = (data) => {
+        setAuthData((prev) => ({ ...prev, ...data }));
+    };
+
     const userLogoutHandler = () => {
         for (const key in authData) {
             localStorage.removeItem(key);
@@ -29,17 +33,18 @@ function App() {
     };
 
     return (
-        <UserContext.Provider value={{ ...authData, userLoginHandler, userLogoutHandler }}>
+        <UserContext.Provider value={{ ...authData, userLoginHandler, userLogoutHandler, addMoreAuthData }}>
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/studioView/none" element={<AddStudio />} />
                 <Route path="/studioView/:id" element={<StudioView />} />
                 {authData.id && (
                     <>
-                        {authData.isStudio && <Route path="/addStudio" element={<AddStudio />} />}
+                        {authData.isStudio && !authData.hasStudio && <Route path="/addStudio" element={<AddStudio />} />}
                         <Route path="/userProfile" element={<UserProfile />} />
                         <Route path="/deleteUser/:id" element={<DeleteUser />} />
                         <Route path="/logout" element={<Logout />} />

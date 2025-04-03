@@ -1,9 +1,25 @@
 import { Link } from "react-router";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
+import { useStudioApi } from "../../api/studioApi";
 
 export default function Header() {
-    const { id, isStudio } = useContext(UserContext);
+    const { id, isStudio, hasStudio } = useContext(UserContext);
+    const { getOwner } = useStudioApi();
+    const [studioId, setStudioId] = useState("none");
+
+    useEffect(() => {
+        if (id && isStudio) {
+            getOwner(id).then((data) => {
+                if (data.studio) {
+                    setStudioId(data.studio);
+                } else {
+                    setStudioId("none");
+                }
+            });
+        }
+    }, [id, isStudio, getOwner, hasStudio]);
+
     return (
         <header className="header">
             <Link to="/" className="header-logo-background">
@@ -16,7 +32,7 @@ export default function Header() {
                 {id ? (
                     <>
                         {isStudio ? (
-                            <Link to="/studioView" className="button">
+                            <Link to={`/studioView/${studioId}`} className="button">
                                 Studio Profile
                             </Link>
                         ) : (

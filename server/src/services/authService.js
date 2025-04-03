@@ -85,7 +85,8 @@ async function loginStudio(email, password) {
     const payload = {
         id: studio._id,
         email: studio.email,
-        isStudio: true
+        isStudio: true,
+        hasStudio: Boolean(studio.studio)
     };
     return payload;
 }

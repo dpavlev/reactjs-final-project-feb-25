@@ -8,7 +8,7 @@ import { Navigate } from "react-router";
 
 export default function AddStudio() {
     const { createStudio } = useStudioApi();
-    const { id } = useContext(UserContext);
+    const { id, addMoreAuthData } = useContext(UserContext);
     const [message, setMessage] = useState("");
     const [redirect, setRedirect] = useState(false);
     const [studioId, setStudioId] = useState(null);
@@ -52,6 +52,7 @@ export default function AddStudio() {
         try {
             const newStudio = await createStudio({ ...values, studioAcc: id });
             setStudioId(newStudio._id);
+            addMoreAuthData({ hasStudio: true });
             setRedirect(true);
         } catch (err) {
             setMessage(err.message);

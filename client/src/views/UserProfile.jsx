@@ -81,7 +81,7 @@ export default function UserProfile() {
                             </Link>
                         </div>
                         <div className={userProfileStyles.deleteProfile}>
-                            <Link to={`/deleteUser/${id}`}>Изтриване на профила</Link>
+                            <Link to={`/deleteUser/${id}`}>Delete profile...</Link>
                         </div>
                     </form>
                 </div>

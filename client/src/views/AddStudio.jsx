@@ -68,10 +68,10 @@ export default function AddStudio() {
             <main className={formsStyles.main}>
                 <div className={formsStyles.loginContainer}>
                     <form onSubmit={submitAction} className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>
-                        <input type="text" name="studioName" id="studioName" placeholder="Име на студиото..." className={formsStyles.formDiv} value={values.studioName} onChange={updateServices} />
-                        <input type="text" name="studioAddress" id="studioAddress" placeholder="Адрес..." className={formsStyles.formDiv} value={values.studioAddress} onChange={updateServices} />
-                        <input type="tel" name="studioPhone" id="studioPhone" placeholder="Телефон: +359 8..." className={formsStyles.formDiv} value={values.studioPhone} onChange={updateServices} />
-                        <textarea name="studioDescription" id="description" placeholder="Описание..." className={`${formsStyles.formDiv} ${formsStyles.formTextarea}`} value={values.studioDescription} onChange={updateServices}></textarea>
+                        <input type="text" name="studioName" id="studioName" placeholder="Studio name..." className={formsStyles.formDiv} value={values.studioName} onChange={updateServices} />
+                        <input type="text" name="studioAddress" id="studioAddress" placeholder="Address..." className={formsStyles.formDiv} value={values.studioAddress} onChange={updateServices} />
+                        <input type="tel" name="studioPhone" id="studioPhone" placeholder="Phone number: +359 8..." className={formsStyles.formDiv} value={values.studioPhone} onChange={updateServices} />
+                        <textarea name="studioDescription" id="description" placeholder="Description..." className={`${formsStyles.formDiv} ${formsStyles.formTextarea}`} value={values.studioDescription} onChange={updateServices}></textarea>
                         <input type="url" name="studioImg" id="studioImg" placeholder="Image URL..." className={formsStyles.formDiv} value={values.studioImg} onChange={updateServices} />
                         <input type="number" name="qtyServices" id="qtyServices" min="1" className={formsStyles.formDiv} value={values.qtyServices} onChange={handleQtyChange} />
                         <div className={formsStyles.servicesContainer}>

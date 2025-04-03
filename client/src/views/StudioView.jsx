@@ -62,7 +62,8 @@ export default function StudioView() {
                             <h1>{values.studioName}</h1>
                             <h3 style={{ color: "gray" }}>{values.studioAddress}</h3>
                         </div>
-                        <FormButton text="Запази час" className={studioStyles.bookBtn} />
+                        <FormButton text="Book Online" className={studioStyles.bookBtn} />
+                        {/* TODO: Add book page */}
                     </div>
                     <p>{values.studioDescription}</p>
                 </div>
@@ -70,7 +71,7 @@ export default function StudioView() {
             <div className={studioStyles.mainContentWrapper}>
                 <div className={`${studioStyles.mainContent} ${studioStyles.marginLeft} ${studioStyles.marginRight}`}>
                     <div className={studioStyles.servicesSection}>
-                        <h1>Услуги</h1>
+                        <h1>Services</h1>
                         <br />
                         <form action="">
                             <ul>
@@ -81,36 +82,36 @@ export default function StudioView() {
                         </form>
                     </div>
                     <div className={studioStyles.workingHours}>
-                        <h1>Работно време</h1>
+                        <h1>Working Hours</h1>
                         <br />
                         <ul>
                             <li>
-                                <span>Понеделник</span>
+                                <span>Monday</span>
                                 <span>9:00 - 17:00</span>
                             </li>
                             <li>
-                                <span>Вторник</span>
+                                <span>Tuesday</span>
                                 <span>9:00 - 17:00</span>
                             </li>
                             <li>
-                                <span>Сряда</span>
+                                <span>Wednesday</span>
                                 <span>9:00 - 17:00</span>
                             </li>
                             <li>
-                                <span>Четвъртък</span>
+                                <span>Thursday</span>
                                 <span>9:00 - 17:00</span>
                             </li>
                             <li>
-                                <span>Петък</span>
+                                <span>Friday</span>
                                 <span>9:00 - 17:00</span>
                             </li>
                             <li>
-                                <span>Събота</span>
-                                <span>9:00 - 17:00</span>
+                                <span>Saturday</span>
+                                <span>Closed</span>
                             </li>
                             <li>
-                                <span>Неделя</span>
-                                <span>9:00 - 17:00</span>
+                                <span>Sunday</span>
+                                <span>Closed</span>
                             </li>
                         </ul>
                     </div>
@@ -118,25 +119,27 @@ export default function StudioView() {
             </div>
             <div className={`${studioStyles.bottomWrapper} ${studioStyles.marginLeft} ${studioStyles.marginRight} ${studioStyles.marginBottom}`}>
                 <div className={`${studioStyles.contacts}`}>
-                    <h1>Контакти</h1>
+                    <h1>Contacts</h1>
                     <ul>
                         <li>
-                            <span>Телефон:</span>
+                            <span>Phone number:</span>
                             <span>{values.studioPhone}</span>
                         </li>
                         <li>
-                            <span>Имейл:</span>
+                            <span>Email:</span>
                             <span>{ownerEmail}</span>
                         </li>
                     </ul>
                 </div>
                 {isStudio && (
                     <div className={`${studioStyles.ownerButtonsWrapper}`}>
-                        <h1>Управление на услуги</h1>
+                        <h1>Studio Management</h1>
                         {/* <button className="addBtn">Добави услуга</button> */}
                         <section className={studioStyles.ownerButtons}>
                             <button className={studioStyles.editBtn}>Edit</button>
+                            {/* TODO: Add edit functionality */}
                             <button className={studioStyles.deleteBtn}>Delete</button>
+                            {/* TODO: Add delete functionality */}
                         </section>
                     </div>
                 )}

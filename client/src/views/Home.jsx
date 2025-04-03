@@ -30,24 +30,24 @@ export default function Home() {
                 </div>
             </div>
             <div className="info-panel">
-                <h1 className="info-heading">Запази си час за разкрасяване бързо и лесно</h1>
+                <h1 className="info-heading">Book a beauty appointment quickly and easily</h1>
                 <div className="info-boxes">
                     <div className="info-div">
                         <img src="/images/beauty-saloon-grad.png" className="info-panel-img-size" />
-                        Избирай между count салона с оценки
+                        Choose between count salons with ratings
                     </div>
                     <div className="info-div">
                         <img src="/images/moon-grad.png" className="info-panel-img-size" />
-                        Запази си час онлайн по всяко време от денонощието
+                        Book an appointment online at any time of the day
                     </div>
                     <div className="info-div">
                         <img src="/images/check-grad.png" className="info-panel-img-size" />
-                        count клиенти, които са си запази час и са останали доволни
+                        count customers who have booked an appointment and have been satisfied
                     </div>
                 </div>
             </div>
             <div className="special-salons main-content-display">
-                <h1 className="info-heading">Избрани салони</h1>
+                <h1 className="info-heading">Selected salons</h1>
                 <div className="salon-items-div">
                     {featuredSalons.map((salon, index) => (
                         <FeaturedSalon key={index} name={salon.name} address={salon.address} image={salon.image} />

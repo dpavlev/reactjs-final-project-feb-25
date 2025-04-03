@@ -9,25 +9,25 @@ export default function Footer() {
                         <img src="/images/logo_rectangle.png" alt="StyleGo" className="header-logo-size" />
                     </Link>
                     <Link to="/addStudio" className="new-salon-btn">
-                        Добави салон
+                        Add Studio
                     </Link>
                 </div>
                 <div className="footer-item-ul">
-                    <h2>Бързи линкове</h2>
+                    <h2>Fast Links</h2>
                     <ul>
                         <li>
                             <Link to="/login" className="footer-link">
-                                Вход
+                                Login
                             </Link>
                         </li>
                         <li>
                             <Link to="/register" className="footer-link">
-                                Регистрация
+                                Registration
                             </Link>
                         </li>
                         <li>
                             <a href="#" className="footer-link">
-                                Повече информация
+                                More Info
                             </a>
                         </li>
                     </ul>

@@ -15,7 +15,7 @@ export default function Dashboard() {
     return (
         <main className="main">
             <div className={dashboardStyles.miniHeader}>
-                <h1 className={dashboardStyles.infoHeading}>Салони за красота в city</h1>
+                <h1 className={dashboardStyles.infoHeading}>Beauty salons in city</h1>
             </div>
             <div className={dashboardStyles.listingContainer}>
                 {studios.map((studio, index) => (

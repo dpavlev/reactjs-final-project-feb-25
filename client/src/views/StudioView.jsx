@@ -40,7 +40,7 @@ export default function StudioView() {
     }, [id, getOneStudio, values]);
 
     useEffect(() => {
-        if (!values.ownerId) return;
+        if (!values.ownerId || ownerEmail) return;
         getOwner(values.ownerId)
             .then((data) => {
                 setOwnerEmail(data.email);
@@ -48,7 +48,7 @@ export default function StudioView() {
             .catch((err) => {
                 console.log(err.message);
             });
-    }, [values.ownerId, getOwner]);
+    }, [values.ownerId, getOwner, ownerEmail]);
 
     return (
         <main className={studioStyles.mainElem}>

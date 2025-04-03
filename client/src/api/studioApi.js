@@ -6,6 +6,13 @@ export function useStudioApi() {
         return data;
     };
 
+    const getAllStudios = async () => {
+        const data = await request("GET", "studios/all");
+        console.log(data);
+
+        // return data;
+    };
+
     const createStudio = async (studioData) => {
         const data = await request("POST", "studios/create", studioData);
         return data;
@@ -21,5 +28,5 @@ export function useStudioApi() {
         }
     };
 
-    return { getOneStudio, createStudio, getOwner };
+    return { getOneStudio, getAllStudios, createStudio, getOwner };
 }

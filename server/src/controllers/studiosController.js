@@ -5,7 +5,12 @@ import studiosService from "../services/studiosService.js";
 const studiosController = Router();
 
 studiosController.get("/all", async (req, res) => {
-    res.json(studios);
+    try {
+        const studios = await studiosService.getAllStudios();
+        res.json(studios);
+    } catch (err) {
+        res.status(400).json({ message: getErrorMessage(err) });
+    }
 });
 
 studiosController.get("/:id", async (req, res) => {

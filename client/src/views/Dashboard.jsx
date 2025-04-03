@@ -1,4 +1,13 @@
+import { useEffect, useState } from "react";
+import { useStudioApi } from "../api/studioApi";
 export default function Dashboard() {
+    const [studios, setStudios] = useState([]);
+    const { getAllStudios } = useStudioApi();
+    useEffect(() => {
+        if (studios.length === 0) {
+            setStudios(getAllStudios());
+        }
+    }, [getAllStudios, studios]);
     return (
         <main className="main">
             <div className="mini-header">

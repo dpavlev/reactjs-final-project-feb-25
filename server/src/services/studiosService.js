@@ -20,7 +20,12 @@ async function getOneStudio(id) {
     });
 }
 
+async function getAllStudios() {
+    return Studio.find({});
+}
+
 export default {
     getOneStudio,
+    getAllStudios,
     createStudio
 };

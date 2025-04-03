@@ -5,9 +5,10 @@ export default function Dashboard() {
     const { getAllStudios } = useStudioApi();
     useEffect(() => {
         if (studios.length === 0) {
-            setStudios(getAllStudios());
+            getAllStudios().then((data) => setStudios(data));
         }
     }, [getAllStudios, studios]);
+
     return (
         <main className="main">
             <div className="mini-header">

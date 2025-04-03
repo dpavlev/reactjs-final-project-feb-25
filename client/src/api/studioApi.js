@@ -8,9 +8,7 @@ export function useStudioApi() {
 
     const getAllStudios = async () => {
         const data = await request("GET", "studios/all");
-        console.log(data);
-
-        // return data;
+        return data;
     };
 
     const createStudio = async (studioData) => {

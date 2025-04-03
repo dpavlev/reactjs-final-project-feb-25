@@ -22,26 +22,25 @@ export default function StudioView() {
     });
 
     useEffect(() => {
-        getOneStudio(id)
-            .then((data) => {
-                setValues({
-                    ...data,
-                    services: data.services.map((service) => ({
-                        name: service.name,
-                        price: service.price
-                    })),
-                    ownerId: data.studioAcc
+        if (!values.studioName)
+            getOneStudio(id)
+                .then((data) => {
+                    setValues({
+                        ...data,
+                        services: data.services.map((service) => ({
+                            name: service.name,
+                            price: service.price
+                        })),
+                        ownerId: data.studioAcc
+                    });
+                })
+                .catch((err) => {
+                    console.log(err.message);
                 });
-            })
-            .catch((err) => {
-                console.log(err.message);
-            });
-    }, [id, getOneStudio]);
+    }, [id, getOneStudio, values]);
 
     useEffect(() => {
-        if (ownerEmail) {
-            return;
-        }
+        if (!values.ownerId) return;
         getOwner(values.ownerId)
             .then((data) => {
                 setOwnerEmail(data.email);
@@ -49,7 +48,7 @@ export default function StudioView() {
             .catch((err) => {
                 console.log(err.message);
             });
-    }, [values.ownerId, getOwner, ownerEmail]);
+    }, [values.ownerId, getOwner]);
 
     return (
         <main className={studioStyles.mainElem}>
@@ -75,7 +74,7 @@ export default function StudioView() {
                         <br />
                         <form action="">
                             <ul>
-                                {values.services.map((service, index) => (
+                                {values?.services.map((service, index) => (
                                     <ServiceSelect key={index} i={index} name={service.name} price={service.price} />
                                 ))}
                             </ul>

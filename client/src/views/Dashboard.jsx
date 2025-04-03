@@ -17,11 +17,17 @@ export default function Dashboard() {
             <div className={dashboardStyles.miniHeader}>
                 <h1 className={dashboardStyles.infoHeading}>Beauty salons in city</h1>
             </div>
-            <div className={dashboardStyles.listingContainer}>
-                {studios.map((studio, index) => (
-                    <DashboardItem key={index} itemData={studio} />
-                ))}
-            </div>
+            {!studios.length ? (
+                <div className={dashboardStyles.emptyContainer}>
+                    <h1>There aren't matching studios</h1>
+                </div>
+            ) : (
+                <div className={dashboardStyles.listingContainer}>
+                    {studios.map((studio, index) => (
+                        <DashboardItem key={index} itemData={studio} />
+                    ))}
+                </div>
+            )}
         </main>
     );
 }

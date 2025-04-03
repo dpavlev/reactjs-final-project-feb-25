@@ -1,5 +1,5 @@
 import studioStyles from "../styles/StudioView.module.css";
-import Service from "../components/common/Service";
+import ServiceSelect from "../components/common/ServiceSelect";
 import FormButton from "../components/common/FormButton";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
@@ -76,7 +76,7 @@ export default function StudioView() {
                         <form action="">
                             <ul>
                                 {values.services.map((service, index) => (
-                                    <Service key={index} i={index} name={service.name} price={service.price} />
+                                    <ServiceSelect key={index} i={index} name={service.name} price={service.price} />
                                 ))}
                             </ul>
                         </form>

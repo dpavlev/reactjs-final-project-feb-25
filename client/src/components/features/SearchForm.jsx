@@ -1,17 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormButton from "../common/FormButton";
-import DatetimePicker from "../common/DatetimePicker";
-import getInitialDate from "../../utils/getInitialDate";
 import { createSearchParams, useNavigate } from "react-router";
-import validateForm from "../../validators/formValidator";
 import Notification from "../layout/Notification";
 import formStyle from "../../styles/Forms.module.css";
+import { useStudioApi } from "../../api/studioApi";
 
 export default function SearchForm() {
+    const [cities, setCities] = useState([]);
+    const { getAllStudios } = useStudioApi();
     const navigate = useNavigate();
     const [message, setMessage] = useState("");
     const [values, setValues] = useState({
         city: ""
+    });
+
+    useEffect(() => {
+        async function fetchCities() {
+            try {
+                const data = await getAllStudios();
+                const uniqueCities = [...new Set(data.map((studio) => studio.studioCity.toLowerCase()))].sort((a, b) => a.localeCompare(b));
+                setCities(uniqueCities);
+            } catch (err) {
+                setMessage(err.message);
+            }
+        }
+        fetchCities();
     });
 
     function valuesChange(e) {
@@ -21,9 +34,7 @@ export default function SearchForm() {
     function onSubmit(e) {
         e.preventDefault();
         try {
-            // validateForm(values);
-            const parsedDate = Date.parse(values.date);
-            const query = new URLSearchParams({ ...values, date: parsedDate }).toString();
+            const query = new URLSearchParams({ ...values }).toString();
             navigate({
                 pathname: "/dashboard",
                 search: createSearchParams(query).toString()
@@ -44,10 +55,15 @@ export default function SearchForm() {
                         <option value="" disabled hidden>
                             Choose a city
                         </option>
-                        <option value="sofia">Sofia</option>
+                        {cities.map((city) => (
+                            <option key={city} value={city}>
+                                {city.charAt(0).toUpperCase() + city.slice(1)}
+                            </option>
+                        ))}
+                        {/* <option value="sofia">Sofia</option>
                         <option value="plovdiv">Plovdiv</option>
                         <option value="varna">Varna</option>
-                        <option value="burgas">Burgas</option>
+                        <option value="burgas">Burgas</option> */}
                         <option value="" disabled>
                             Expect more soon...
                         </option>

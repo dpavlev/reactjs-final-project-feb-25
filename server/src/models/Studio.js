@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 const serviceSchema = new Schema(
     {
-        name: { type: String, required: true },
+        name: { type: String, required: true, trim: true },
         price: { type: Number, required: true }
     },
     { _id: false }
@@ -13,35 +13,42 @@ const studioSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        minLength: 3
+        minLength: 3,
+        trim: true
     },
     studioCity: {
         type: String,
         required: true,
         unique: false,
-        minLength: 3
+        minLength: 3,
+        trim: true
     },
     studioAddress: {
         type: String,
         required: true,
         unique: true,
-        minLength: 3
+        minLength: 3,
+        trim: true
     },
     studioPhone: {
         type: String,
         required: true,
         unique: false,
-        minLength: 10
+        minLength: 10,
+        maxLength: 10,
+        trim: true
     },
     studioDescription: {
         type: String,
         required: true,
-        unique: false
+        unique: false,
+        trim: true
     },
     studioImg: {
         type: String,
         required: true,
-        unique: false
+        unique: false,
+        trim: true
     },
     services: {
         type: [serviceSchema],
@@ -60,6 +67,7 @@ studioSchema.pre("save", function (next) {
     if (!this.dateCreated) {
         this.dateCreated = new Date();
     }
+    this.studioCity = this.studioCity.toLowerCase();
     next();
 });
 

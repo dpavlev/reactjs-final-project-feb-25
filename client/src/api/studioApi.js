@@ -6,8 +6,8 @@ export function useStudioApi() {
         return data;
     };
 
-    const getAllStudios = async () => {
-        const data = await request("GET", "studios/all");
+    const getAllStudios = async (query) => {
+        const data = await request("GET", `studios/all${query ? `?${new URLSearchParams(query)}` : ""}`);
         return data;
     };
 

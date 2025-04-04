@@ -2,20 +2,26 @@ import { useEffect, useState } from "react";
 import { useStudioApi } from "../api/studioApi";
 import DashboardItem from "../components/common/DashboardItem/DashboardItem";
 import dashboardStyles from "../styles/Dashboard.module.css";
+import { useSearchParams } from "react-router";
 
 export default function Dashboard() {
     const [studios, setStudios] = useState([]);
     const { getAllStudios } = useStudioApi();
+    const [queryParams] = useSearchParams();
+    const city = queryParams.get("city")?.charAt(0).toUpperCase() + queryParams.get("city")?.slice(1) || "";
+    const service = queryParams.get("service");
+    const date = queryParams.get("date");
+
     useEffect(() => {
         if (studios.length === 0) {
-            getAllStudios().then((data) => setStudios(data));
+            getAllStudios({ city, service, date }).then((data) => setStudios(data));
         }
-    }, [getAllStudios, studios]);
+    }, [getAllStudios, studios.length, city, service, date]);
 
     return (
         <main className="main">
             <div className={dashboardStyles.miniHeader}>
-                <h1 className={dashboardStyles.infoHeading}>Beauty salons in city</h1>
+                <h1 className={dashboardStyles.infoHeading}>{city ? `Beauty salons in ${city}` : `All studios and salons`}</h1>
             </div>
             {!studios.length ? (
                 <div className={dashboardStyles.emptyContainer}>

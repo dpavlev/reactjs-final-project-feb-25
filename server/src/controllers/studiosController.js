@@ -5,8 +5,11 @@ import studiosService from "../services/studiosService.js";
 const studiosController = Router();
 
 studiosController.get("/all", async (req, res) => {
+    const query = req.query;
+    console.log(query);
+
     try {
-        const studios = await studiosService.getAllStudios();
+        const studios = await studiosService.getAllStudios(query);
         res.json(studios);
     } catch (err) {
         res.status(400).json({ message: getErrorMessage(err) });

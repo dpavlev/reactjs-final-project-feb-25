@@ -20,8 +20,21 @@ async function getOneStudio(id) {
     });
 }
 
-async function getAllStudios() {
-    return Studio.find({});
+async function getAllStudios(query = {}) {
+    try {
+        const studios = await Studio.find({});
+
+        if (!query.city) {
+            return studios;
+        }
+
+        return studios.filter((studio) => {
+            return query.city && studio.studioCity;
+        });
+    } catch (error) {
+        console.error("Error fetching studios:", error);
+        throw new Error("Failed to retrieve studios");
+    }
 }
 
 export default {

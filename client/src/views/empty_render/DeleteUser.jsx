@@ -1,5 +1,5 @@
 import { Navigate, useParams } from "react-router";
-import { useDeleteUser } from "../api/userApi";
+import { useDeleteUser } from "../../api/userApi";
 
 export default function DeleteUser() {
     const { id } = useParams();

@@ -35,7 +35,7 @@ const studioSchema = new Schema({
         required: true,
         unique: false,
         minLength: 10,
-        maxLength: 10,
+        maxLength: 13,
         trim: true
     },
     studioDescription: {

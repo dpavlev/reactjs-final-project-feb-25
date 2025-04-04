@@ -93,6 +93,11 @@
     cursor: pointer;
 }
 
+.formSubmitBtn:disabled {
+    background-color: #a3d8a1;
+    cursor: not-allowed;
+}
+
 .formHeader {
     text-align: center;
 }

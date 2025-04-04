@@ -95,7 +95,7 @@ export default function Register() {
                         ) : (
                             <RegisterStudio values={studioValues} handleChange={handleChange} />
                         )}
-                        <FormButton text="Register" />
+                        <FormButton text="Register" disabled={!!message} />
                     </form>
                 </div>
             </main>

@@ -168,7 +168,7 @@ export default function EditStudio() {
                                 </div>
                             ))}
                         </div>
-                        <FormButton text="Edit Studio" />
+                        <FormButton text="Edit Studio" disabled={!!message} />
                     </form>
                 </div>
             </main>

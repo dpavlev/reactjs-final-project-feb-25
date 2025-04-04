@@ -52,7 +52,7 @@ export default function UserProfile() {
 
     return (
         <>
-            <Notification message={message} onClose={() => setMessage(null)} />
+            <Notification message={message} onClose={() => setMessage("")} />
             <main className={formsStyles.main}>
                 <div className={formsStyles.loginContainer}>
                     <form onSubmit={submitForm} className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>
@@ -107,7 +107,7 @@ export default function UserProfile() {
                             />
                         </div>
                         <div className={userProfileStyles.buttons}>
-                            <FormButton text="Save" className={userProfileStyles.formSubmitBtn} />
+                            <FormButton text="Save" className={userProfileStyles.formSubmitBtn} disabled={!!message} />
                             <Link to="/" className={`${formsStyles.formSubmitBtn} ${userProfileStyles.backBtn} ${userProfileStyles.formSubmitBtn}`}>
                                 Back
                             </Link>

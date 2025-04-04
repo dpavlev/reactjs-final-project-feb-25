@@ -155,7 +155,7 @@ export default function AddStudio() {
                                 </div>
                             ))}
                         </div>
-                        <FormButton text="Add Studio" />
+                        <FormButton text="Add Studio" disabled={!!message} />
                     </form>
                 </div>
             </main>

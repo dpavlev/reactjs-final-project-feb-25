@@ -69,31 +69,12 @@ export default function SearchForm() {
                                 {city.charAt(0).toUpperCase() + city.slice(1)}
                             </option>
                         ))}
-                        {/* <option value="sofia">Sofia</option>
-                        <option value="plovdiv">Plovdiv</option>
-                        <option value="varna">Varna</option>
-                        <option value="burgas">Burgas</option> */}
                         <option value="" disabled>
                             Expect more soon...
                         </option>
                     </select>
                 </div>
-                {/* <div className={formStyle.formDiv}>
-                    <i className={`fa-solid fa-spa ${formStyle.formIco}`}></i>
-                    <select className={formStyle.formSelector} name="service" id="service" value={values.service} onChange={valuesChange}>
-                        <option value="" disabled hidden>
-                            Choose a service
-                        </option>
-                        <option value="maleHaircut">Male haircut</option>
-                        <option value="femaleHaircut">Female haircut</option>
-                        <option value="beardTrim">Beard Trim</option>
-                        <option value="" disabled>
-                            Expect more soon...
-                        </option>
-                    </select>
-                </div>
-                <DatetimePicker onChange={valuesChange} /> */}
-                <FormButton text="Show salons" />
+                <FormButton text="Show salons" disabled={!!message} />
             </form>
         </>
     );

@@ -39,7 +39,7 @@ export default function Login() {
 
     return (
         <>
-            <Notification message={message} />
+            <Notification message={message} onClose={() => setMessage("")} />
             <main className={formsStyles.main}>
                 <div className={formsStyles.loginContainer}>
                     <form onSubmit={submitForm} className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>
@@ -85,7 +85,7 @@ export default function Login() {
                             value={values.password}
                             onChange={handleChange}
                         />
-                        <FormButton text="Login" />
+                        <FormButton text="Login" disabled={!!message} />
                     </form>
                 </div>
             </main>

@@ -99,7 +99,7 @@ export default function BookOnline() {
                             </div>
                         </div>
                         <div className={userProfileStyles.buttons}>
-                            <FormButton text="Book now" className={bookOnlineStyles.formSubmitBtn} />
+                            <FormButton text="Book now" className={bookOnlineStyles.formSubmitBtn} disabled={!!message} />
                             <Link
                                 to={`/studioView/${state.studioId}`}
                                 className={`${formsStyles.formSubmitBtn} ${userProfileStyles.backBtn} ${userProfileStyles.formSubmitBtn}`}

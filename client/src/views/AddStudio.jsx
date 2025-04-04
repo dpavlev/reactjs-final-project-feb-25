@@ -54,6 +54,7 @@ export default function AddStudio() {
             const newStudio = await createStudio({ ...values, studioAcc: id });
             setStudioId(newStudio._id);
             addMoreAuthData({ hasStudio: true });
+            localStorage.setItem("hasStudio", true);
             setRedirect(true);
         } catch (err) {
             setMessage(err.message);

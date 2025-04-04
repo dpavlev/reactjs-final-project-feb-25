@@ -44,7 +44,8 @@ async function registerStudio(userData) {
         const payload = {
             id: newStudio._id,
             email: newStudio.email,
-            isStudio: true
+            isStudio: true,
+            hasStudio: Boolean(studio.studio)
         };
         return payload;
     } catch (err) {

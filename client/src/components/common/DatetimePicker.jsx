@@ -36,7 +36,17 @@ export default function DatetimePicker({ onChange }) {
 
     return (
         <div className="form-div datetime-container">
-            <DatePicker className="datetime-input" defaultValue={defaultValue} locale={buddhistLocale} showTime={{ minuteStep: 5 }} allowClear={false} minDate={defaultValue} onChange={handleDateChange} />
+            <DatePicker
+                className="datetime-input"
+                defaultValue={defaultValue}
+                locale={buddhistLocale}
+                showTime={{ minuteStep: 5 }}
+                allowClear={false}
+                minDate={defaultValue}
+                onChange={handleDateChange}
+                name="date"
+                id="date"
+            />
         </div>
     );
 }

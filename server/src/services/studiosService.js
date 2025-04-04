@@ -37,8 +37,21 @@ async function getAllStudios(query = {}) {
     }
 }
 
+async function updateStudio(id, studioData) {
+    try {
+        const updatedStudio = await Studio.findByIdAndUpdate(id, studioData, { new: true });
+        if (!updatedStudio) {
+            throw new Error("Studio not found");
+        }
+        return updatedStudio;
+    } catch (err) {
+        throw new Error("Error updating studio: " + err.message);
+    }
+}
+
 export default {
     getOneStudio,
     getAllStudios,
-    createStudio
+    createStudio,
+    updateStudio
 };

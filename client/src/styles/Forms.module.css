@@ -43,7 +43,8 @@
     gap: 1rem;
     padding: 1rem 1.2rem 1rem 1.2rem;
     border-radius: 10px;
-    min-width: 400px
+    min-width: 400px;
+    max-width: 400px;
 }
 
 .formDiv {

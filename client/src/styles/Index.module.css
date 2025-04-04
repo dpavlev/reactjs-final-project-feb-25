@@ -1,5 +1,9 @@
 .formContainer {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
 }
 
 .topContent {
@@ -14,7 +18,9 @@
     background-image: url(/images/saloons-background.png);
     min-height: 380px;
     background-position: center;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .infoPanel {

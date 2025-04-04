@@ -3,7 +3,7 @@ import ServiceSelect from "../components/common/ServiceSelect";
 import FormButton from "../components/common/FormButton";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useStudioApi } from "../api/studioApi";
 
 export default function StudioView() {
@@ -136,7 +136,9 @@ export default function StudioView() {
                         <h1>Studio Management</h1>
                         {/* <button className="addBtn">Добави услуга</button> */}
                         <section className={studioStyles.ownerButtons}>
-                            <button className={studioStyles.editBtn}>Edit</button>
+                            <Link to={`/studioView/${id}/edit`}>
+                                <button className={studioStyles.editBtn}>Edit</button>
+                            </Link>
                             {/* TODO: Add edit functionality */}
                             <button className={studioStyles.deleteBtn}>Delete</button>
                             {/* TODO: Add delete functionality */}
@@ -144,8 +146,6 @@ export default function StudioView() {
                     </div>
                 )}
             </div>
-            {/* <!-- <div className="login-container">
-    </div> --> */}
         </main>
     );
 }

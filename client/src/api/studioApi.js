@@ -26,5 +26,10 @@ export function useStudioApi() {
         }
     };
 
-    return { getOneStudio, getAllStudios, createStudio, getOwner };
+    const editStudio = async (studioId, studioData) => {
+        const data = await request("PUT", `studios/edit/${studioId}`, studioData);
+        return data;
+    };
+
+    return { getOneStudio, getAllStudios, createStudio, getOwner, editStudio };
 }

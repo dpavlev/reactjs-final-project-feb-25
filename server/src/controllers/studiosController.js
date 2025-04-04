@@ -6,8 +6,6 @@ const studiosController = Router();
 
 studiosController.get("/all", async (req, res) => {
     const query = req.query;
-    console.log(query);
-
     try {
         const studios = await studiosService.getAllStudios(query);
         res.json(studios);
@@ -31,6 +29,17 @@ studiosController.post("/create", async (req, res) => {
     try {
         const newStudio = await studiosService.createStudio(studioData);
         res.json(newStudio);
+    } catch (err) {
+        res.status(400).json({ message: getErrorMessage(err) });
+    }
+});
+
+studiosController.put("/edit/:id", async (req, res) => {
+    const studioData = req.body;
+    const { id } = req.params;
+    try {
+        await studiosService.updateStudio(id, studioData);
+        res.end();
     } catch (err) {
         res.status(400).json({ message: getErrorMessage(err) });
     }

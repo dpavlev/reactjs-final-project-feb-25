@@ -14,6 +14,7 @@ import initialAuthData from "./utils/initialAuthData";
 import DeleteUser from "./views/DeleteUser";
 import StudioView from "./views/StudioView";
 import EditStudio from "./views/EditStudio";
+import DeleteStudio from "./views/empty_render/DeleteStudio";
 
 function App() {
     const [authData, setAuthData] = useState(initialAuthData());
@@ -49,6 +50,7 @@ function App() {
                         {authData.isStudio && authData.hasStudio && (
                             <>
                                 <Route path="/studioView/:id/edit" element={<EditStudio />} />
+                                <Route path="/studioView/:id/delete" element={<DeleteStudio />} />
                             </>
                         )}
                         <Route path="/userProfile" element={<UserProfile />} />

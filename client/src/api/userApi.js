@@ -54,3 +54,21 @@ export function useDeleteUser(id) {
 
     return { isDeleted };
 }
+
+export function useRemoveStudio() {
+    const { addMoreAuthData, hasStudio, id } = useContext(UserContext);
+    useEffect(() => {
+        const removeStudio = async () => {
+            try {
+                await request("PUT", `user/studioAccs/${id}`);
+                addMoreAuthData({ hasStudio: false });
+                localStorage.setItem("hasStudio", false);
+            } catch (err) {
+                console.error(err.message);
+            }
+        };
+        if (hasStudio) {
+            removeStudio();
+        }
+    }, [hasStudio, addMoreAuthData, id]);
+}

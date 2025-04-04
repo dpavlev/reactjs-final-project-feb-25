@@ -53,4 +53,16 @@ userController.get("/studioAccs/:ownerId", async (req, res) => {
     }
 });
 
+userController.put("/studioAccs/:ownerId", async (req, res) => {
+    const ownerId = req.params.ownerId;
+    try {
+        await userService.removeStudio(ownerId);
+        res.end();
+    } catch (err) {
+        res.status(400).json({
+            message: getErrorMessage(err)
+        });
+    }
+});
+
 export default userController;

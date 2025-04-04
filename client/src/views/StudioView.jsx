@@ -134,14 +134,13 @@ export default function StudioView() {
                 {isStudio && (
                     <div className={`${studioStyles.ownerButtonsWrapper}`}>
                         <h1>Studio Management</h1>
-                        {/* <button className="addBtn">Добави услуга</button> */}
                         <section className={studioStyles.ownerButtons}>
                             <Link to={`/studioView/${id}/edit`}>
                                 <button className={studioStyles.editBtn}>Edit</button>
                             </Link>
-                            {/* TODO: Add edit functionality */}
-                            <button className={studioStyles.deleteBtn}>Delete</button>
-                            {/* TODO: Add delete functionality */}
+                            <Link to={`/studioView/${id}/delete`}>
+                                <button className={studioStyles.deleteBtn}>Delete</button>
+                            </Link>
                         </section>
                     </div>
                 )}

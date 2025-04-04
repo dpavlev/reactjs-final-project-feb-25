@@ -49,9 +49,22 @@ async function updateStudio(id, studioData) {
     }
 }
 
+async function deleteStudio(id) {
+    try {
+        const studio = await Studio.findByIdAndDelete(id);
+        if (!studio) {
+            throw new Error("Studio not found");
+        }
+        return studio;
+    } catch (err) {
+        throw new Error("Error deleting studio: " + err.message);
+    }
+}
+
 export default {
     getOneStudio,
     getAllStudios,
     createStudio,
-    updateStudio
+    updateStudio,
+    deleteStudio
 };

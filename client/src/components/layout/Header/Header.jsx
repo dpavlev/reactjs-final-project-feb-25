@@ -5,7 +5,7 @@ import { useStudioApi } from "../../../api/studioApi";
 import styles from "./Header.module.css";
 
 export default function Header() {
-    const { id, isStudio, hasStudio } = useContext(UserContext);
+    const { id, isStudio } = useContext(UserContext);
     const { getOwner } = useStudioApi();
     const [studioId, setStudioId] = useState("none");
 
@@ -19,7 +19,7 @@ export default function Header() {
                 }
             });
         }
-    }, [id, isStudio, getOwner, hasStudio]);
+    }, [id, isStudio, getOwner]);
 
     return (
         <header className={styles.header}>

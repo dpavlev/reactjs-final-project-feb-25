@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import request from "../utils/request";
 
 export function useStudioApi() {
@@ -32,4 +33,25 @@ export function useStudioApi() {
     };
 
     return { getOneStudio, getAllStudios, createStudio, getOwner, editStudio };
+}
+
+export function useDeleteStudio(id) {
+    const [isDeleted, setIsDeleted] = useState(false);
+
+    useEffect(() => {
+        const deleteStudio = async () => {
+            try {
+                await request("DELETE", `studios/${id}`);
+                setIsDeleted(true);
+            } catch (err) {
+                console.error(err.message);
+            }
+        };
+
+        if (id) {
+            deleteStudio();
+        }
+    }, [id]);
+
+    return { isDeleted };
 }

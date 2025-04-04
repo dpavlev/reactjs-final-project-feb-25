@@ -24,6 +24,16 @@ studiosController.get("/:id", async (req, res) => {
     }
 });
 
+studiosController.delete("/:id", async (req, res) => {
+    const { id } = req.params;
+    try {
+        await studiosService.deleteStudio(id);
+        res.end();
+    } catch (err) {
+        res.status(404).json({ message: getErrorMessage(err) });
+    }
+});
+
 studiosController.post("/create", async (req, res) => {
     const studioData = req.body;
     try {

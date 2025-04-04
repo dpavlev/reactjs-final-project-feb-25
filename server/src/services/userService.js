@@ -76,9 +76,30 @@ async function getStudioAcc(ownerId) {
         });
 }
 
+async function removeStudio(ownerId) {
+    return StudioAcc.findByIdAndUpdate(
+        { _id: ownerId },
+        {
+            $set: {
+                studio: null
+            }
+        }
+    )
+        .then((studioAcc) => {
+            if (!studioAcc) {
+                throw new Error("Studio account not found!");
+            }
+            return;
+        })
+        .catch((err) => {
+            throw new Error("Error deleting studio account: " + err.message);
+        });
+}
+
 export default {
     deleteUser,
     getUser,
     updateUser,
-    getStudioAcc
+    getStudioAcc,
+    removeStudio
 };

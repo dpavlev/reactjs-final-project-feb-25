@@ -61,10 +61,24 @@ async function deleteStudio(id) {
     }
 }
 
+async function bookServices(id, bookingData) {
+    try {
+        const studio = await Studio.findById(id);
+        if (!studio) {
+            throw new Error("Studio not found");
+        }
+        studio.bookings.push(bookingData);
+        await studio.save();
+    } catch (err) {
+        throw new Error("Error booking services: " + err.message);
+    }
+}
+
 export default {
     getOneStudio,
     getAllStudios,
     createStudio,
     updateStudio,
-    deleteStudio
+    deleteStudio,
+    bookServices
 };

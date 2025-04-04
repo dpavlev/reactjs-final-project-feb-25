@@ -8,6 +8,29 @@ const serviceSchema = new Schema(
     { _id: false }
 );
 
+const bookingsSchema = new Schema(
+    {
+        services: {
+            type: [serviceSchema],
+            required: true
+        },
+        dateRangeStart: {
+            type: Date,
+            required: true
+        },
+        dateRangeEnd: {
+            type: Date,
+            required: true
+        },
+        userId: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            required: true
+        }
+    },
+    { _id: false }
+);
+
 const studioSchema = new Schema({
     studioName: {
         type: String,
@@ -53,6 +76,9 @@ const studioSchema = new Schema({
     services: {
         type: [serviceSchema],
         required: true
+    },
+    bookings: {
+        type: [bookingsSchema]
     },
     studioAcc: {
         type: Schema.Types.ObjectId,

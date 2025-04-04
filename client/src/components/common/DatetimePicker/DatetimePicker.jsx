@@ -1,9 +1,11 @@
 import { DatePicker } from "antd";
 import en from "antd/es/date-picker/locale/en_US";
 import dayjs from "dayjs";
-import formStyle from "../../styles/Forms.module.css";
+import { formDiv, datetimeInput } from "./DatetimePicker.module.css";
+import { CalendarOutlined } from "@ant-design/icons";
 
-export default function DatetimePicker({ onChange }) {
+export default function DatetimePicker({ onChange, name, id }) {
+    const { RangePicker } = DatePicker;
     const getInitialDate = () => {
         let date = new Date(Date.now());
         date.setHours(date.getHours() + 4);
@@ -26,27 +28,19 @@ export default function DatetimePicker({ onChange }) {
 
     const defaultValue = getInitialDate();
 
-    const handleDateChange = (date) => {
-        onChange({
-            target: {
-                name: "date",
-                value: date ? date.format("YYYY-MM-DDTHH:mm") : ""
-            }
-        });
-    };
-
     return (
-        <div className={`datetimeContainer ${formStyle.formDiv}`}>
-            <DatePicker
-                className={formStyle.datetimeInput}
+        <div className={formDiv}>
+            <RangePicker
+                className={datetimeInput}
                 defaultValue={defaultValue}
                 locale={buddhistLocale}
                 showTime={{ minuteStep: 5 }}
-                allowClear={false}
                 minDate={defaultValue}
-                onChange={handleDateChange}
-                name="date"
-                id="date"
+                onChange={onChange}
+                suffixIcon={null}
+                prefix={<CalendarOutlined />}
+                name={name}
+                id={id}
             />
         </div>
     );

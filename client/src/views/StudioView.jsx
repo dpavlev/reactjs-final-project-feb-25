@@ -1,16 +1,18 @@
 import studioStyles from "../styles/StudioView.module.css";
 import ServiceSelect from "../components/common/ServiceSelect";
 import FormButton from "../components/common/FormButton";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { useStudioApi } from "../api/studioApi";
 
 export default function StudioView() {
+    const navigate = useNavigate();
     const { isStudio } = useContext(UserContext);
     const { id } = useParams();
     const { getOneStudio, getOwner } = useStudioApi();
     const [ownerEmail, setOwnerEmail] = useState("");
+    const formRef = useRef(null);
     const [values, setValues] = useState({
         studioName: "",
         studioCity: "",
@@ -51,6 +53,22 @@ export default function StudioView() {
             });
     }, [values.ownerId, getOwner, ownerEmail]);
 
+    function onSubmit(e) {
+        e.preventDefault();
+        const formData = new FormData(formRef.current);
+        const selectedServices = Array.from(formData.entries());
+
+        navigate("/bookOnline", {
+            state: { studioId: id, services: selectedServices.map((item) => item[0]) }
+        });
+    }
+
+    function bookBtnHandler() {
+        if (formRef.current) {
+            formRef.current.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+        }
+    }
+
     return (
         <main className={studioStyles.mainElem}>
             <div className={`${studioStyles.mainHeaderContent} ${studioStyles.marginTop} ${studioStyles.marginLeft} ${studioStyles.marginRight}`}>
@@ -65,7 +83,7 @@ export default function StudioView() {
                                 {values.studioAddress}, {values.studioCity.charAt(0).toUpperCase() + values.studioCity.slice(1)}
                             </h3>
                         </div>
-                        <FormButton text="Book Online" className={studioStyles.bookBtn} />
+                        <FormButton text="Book Online" className={studioStyles.bookBtn} onClick={bookBtnHandler} />
                         {/* TODO: Add book page */}
                     </div>
                     <p>{values.studioDescription}</p>
@@ -76,10 +94,10 @@ export default function StudioView() {
                     <div className={studioStyles.servicesSection}>
                         <h1>Services</h1>
                         <br />
-                        <form action="">
+                        <form ref={formRef} onSubmit={onSubmit}>
                             <ul>
                                 {values?.services.map((service, index) => (
-                                    <ServiceSelect key={index} i={index} name={service.name} price={service.price} />
+                                    <ServiceSelect key={index} name={service.name} price={service.price} />
                                 ))}
                             </ul>
                         </form>

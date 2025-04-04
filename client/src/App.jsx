@@ -15,6 +15,7 @@ import DeleteUser from "./views/empty_render/DeleteUser";
 import StudioView from "./views/StudioView";
 import EditStudio from "./views/EditStudio";
 import DeleteStudio from "./views/empty_render/DeleteStudio";
+import BookOnline from "./views/BookOnline/BookOnline";
 
 function App() {
     const [authData, setAuthData] = useState(initialAuthData());
@@ -53,6 +54,7 @@ function App() {
                                 <Route path="/studioView/:id/delete" element={<DeleteStudio />} />
                             </>
                         )}
+                        <Route path="/bookOnline" element={<BookOnline />} />
                         <Route path="/userProfile" element={<UserProfile />} />
                         <Route path="/deleteUser/:id" element={<DeleteUser />} />
                         <Route path="/logout" element={<Logout />} />

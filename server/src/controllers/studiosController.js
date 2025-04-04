@@ -55,4 +55,15 @@ studiosController.put("/edit/:id", async (req, res) => {
     }
 });
 
+studiosController.post("/book/:id", async (req, res) => {
+    const bookingData = req.body;
+    const { id } = req.params;
+    try {
+        await studiosService.bookServices(id, bookingData);
+        res.end();
+    } catch (err) {
+        res.status(400).json({ message: getErrorMessage(err) });
+    }
+});
+
 export default studiosController;

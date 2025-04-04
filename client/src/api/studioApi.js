@@ -32,7 +32,12 @@ export function useStudioApi() {
         return data;
     };
 
-    return { getOneStudio, getAllStudios, createStudio, getOwner, editStudio };
+    const bookServices = async (studioId, bookingData) => {
+        const data = await request("POST", `studios/book/${studioId}`, bookingData);
+        return data;
+    };
+
+    return { getOneStudio, getAllStudios, createStudio, getOwner, editStudio, bookServices };
 }
 
 export function useDeleteStudio(id) {

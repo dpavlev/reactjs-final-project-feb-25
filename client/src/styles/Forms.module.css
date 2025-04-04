@@ -120,12 +120,3 @@
 .formSelector:hover {
     cursor: pointer;
 }
-
-.datetimeInput {
-    padding-left: 0.5rem;
-    border: none;
-    border-radius: 5px;
-    min-height: 40px;
-    width: 100%;
-    cursor: pointer;
-}

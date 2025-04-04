@@ -41,7 +41,7 @@ export default function SearchForm() {
                 <h1 className="form-header">Book an appointment</h1>
                 <div className="form-div">
                     <i className="fa-solid fa-location-dot form-ico"></i>
-                    <select className="form-selector" name="city" value={values.city} onChange={valuesChange}>
+                    <select className="form-selector" name="city" id="city" value={values.city} onChange={valuesChange}>
                         <option value="" disabled hidden>
                             Choose a city
                         </option>
@@ -56,7 +56,7 @@ export default function SearchForm() {
                 </div>
                 <div className="form-div">
                     <i className="fa-solid fa-spa form-ico"></i>
-                    <select className="form-selector" name="service" value={values.service} onChange={valuesChange}>
+                    <select className="form-selector" name="service" id="service" value={values.service} onChange={valuesChange}>
                         <option value="" disabled hidden>
                             Choose a service
                         </option>

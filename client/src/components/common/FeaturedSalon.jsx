@@ -1,6 +1,8 @@
-export default function FeaturedSalon({ name, address, image }) {
+import { Link } from "react-router";
+
+export default function FeaturedSalon({ name, address, image, id }) {
     return (
-        <a href="#">
+        <Link to={`/studioView/${id}`}>
             <div className="salon-item">
                 <img src={image} alt={name} />
                 <div style={{ padding: "0 0 10px 10px" }}>
@@ -8,6 +10,6 @@ export default function FeaturedSalon({ name, address, image }) {
                     <p>{address}</p>
                 </div>
             </div>
-        </a>
+        </Link>
     );
 }

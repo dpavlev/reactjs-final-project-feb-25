@@ -16,7 +16,7 @@ export default function Home() {
             const sorted = data.sort((a, b) => Date.parse(b.dateCreated) - Date.parse(a.dateCreated)).slice(0, 4);
             setStudios(sorted);
         });
-    }, [studios, getAllStudios]);
+    });
 
     return (
         <main className="main">
@@ -48,16 +48,20 @@ export default function Home() {
             <div className={`${indexStyles.specialSalons} ${indexStyles.mainContentDisplay}`}>
                 <h1 className={indexStyles.infoHeading}>New salons</h1>
                 <div className={indexStyles.salonItemsDiv}>
-                    {studios.map((studio, index) => (
-                        <FeaturedSalon
-                            key={index}
-                            name={studio.studioName}
-                            address={studio.studioAddress}
-                            image={studio.studioImg}
-                            id={studio._id}
-                            className={indexStyles.salonItem}
-                        />
-                    ))}
+                    {studios.length ? (
+                        studios.map((studio, index) => (
+                            <FeaturedSalon
+                                key={index}
+                                name={studio.studioName}
+                                address={studio.studioAddress}
+                                image={studio.studioImg}
+                                id={studio._id}
+                                className={indexStyles.salonItem}
+                            />
+                        ))
+                    ) : (
+                        <h1 className={indexStyles.infoHeading}>No studios available</h1>
+                    )}
                 </div>
             </div>
         </main>

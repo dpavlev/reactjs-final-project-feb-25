@@ -23,7 +23,7 @@ export default function Home() {
             <div className={indexStyles.imageBackground}>
                 <div className={indexStyles.topContent}>
                     <div className={indexStyles.formContainer}>
-                        </h1>
+                        <SearchForm />
                     </div>
                 </div>
             </div>

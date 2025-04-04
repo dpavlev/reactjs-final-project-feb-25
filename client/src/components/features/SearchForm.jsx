@@ -5,6 +5,7 @@ import getInitialDate from "../../utils/getInitialDate";
 import { createSearchParams, useNavigate } from "react-router";
 import validateForm from "../../validators/formValidator";
 import Notification from "../layout/Notification";
+import formStyle from "../../styles/Forms.module.css";
 
 export default function SearchForm() {
     const navigate = useNavigate();
@@ -37,11 +38,11 @@ export default function SearchForm() {
     return (
         <>
             <Notification message={message} onClose={() => setMessage("")} />
-            <form onSubmit={onSubmit} className="form-content">
-                <h1 className="form-header">Book an appointment</h1>
-                <div className="form-div">
-                    <i className="fa-solid fa-location-dot form-ico"></i>
-                    <select className="form-selector" name="city" id="city" value={values.city} onChange={valuesChange}>
+            <form onSubmit={onSubmit} className={formStyle.searchFormContent}>
+                <h1 className={formStyle.formHeader}>Book an appointment</h1>
+                <div className={formStyle.formDiv}>
+                    <i className={`fa-solid fa-location-dot ${formStyle.formIco}`}></i>
+                    <select className={formStyle.formSelector} name="city" id="city" value={values.city} onChange={valuesChange}>
                         <option value="" disabled hidden>
                             Choose a city
                         </option>
@@ -54,9 +55,9 @@ export default function SearchForm() {
                         </option>
                     </select>
                 </div>
-                <div className="form-div">
-                    <i className="fa-solid fa-spa form-ico"></i>
-                    <select className="form-selector" name="service" id="service" value={values.service} onChange={valuesChange}>
+                <div className={formStyle.formDiv}>
+                    <i className={`fa-solid fa-spa ${formStyle.formIco}`}></i>
+                    <select className={formStyle.formSelector} name="service" id="service" value={values.service} onChange={valuesChange}>
                         <option value="" disabled hidden>
                             Choose a service
                         </option>

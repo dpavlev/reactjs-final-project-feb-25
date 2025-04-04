@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Routes, Route, Navigate } from "react-router";
-import Header from "./components/layout/Header";
-import Footer from "./components/layout/Footer";
+import Header from "./components/layout/Header/Header";
+import Footer from "./components/layout/Footer/Footer";
 import Home from "./views/Home";
 import Login from "./views/Login";
 import Register from "./views/Register";

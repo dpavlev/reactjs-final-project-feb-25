@@ -1,39 +1,41 @@
 import { Link } from "react-router";
+import styles from "./Footer.module.css";
+import { headerLogoSize, headerLogoBackground } from "../Header/Header.module.css";
 
 export default function Footer() {
     return (
-        <footer className="footer">
-            <div className="footer-info-container">
-                <div className="footer-item">
-                    <Link to="/" className="header-logo-background">
-                        <img src="/images/logo_rectangle.png" alt="StyleGo" className="header-logo-size" />
+        <footer className={styles.footer}>
+            <div className={styles.footerInfoContainer}>
+                <div className={styles.footerItem}>
+                    <Link to="/" className={headerLogoBackground}>
+                        <img src="/images/logo_rectangle.png" alt="StyleGo" className={headerLogoSize} />
                     </Link>
-                    <Link to="/addStudio" className="new-salon-btn">
+                    <Link to="/addStudio" className={styles.newSalonBtn}>
                         Add Studio
                     </Link>
                 </div>
-                <div className="footer-item-ul">
+                <div className={styles.footerItemUl}>
                     <h2>Fast Links</h2>
                     <ul>
                         <li>
-                            <Link to="/login" className="footer-link">
+                            <Link to="/login" className={styles.footerLink}>
                                 Login
                             </Link>
                         </li>
                         <li>
-                            <Link to="/register" className="footer-link">
+                            <Link to="/register" className={styles.footerLink}>
                                 Registration
                             </Link>
                         </li>
                         <li>
-                            <a href="#" className="footer-link">
+                            <a href="#" className={styles.footerLink}>
                                 More Info
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div className="copyright">
+            <div className={styles.copyright}>
                 <p>&copy; 2025 StyleGo Изготвено от Димитър Павлев (dimitar557) </p>
             </div>
         </footer>

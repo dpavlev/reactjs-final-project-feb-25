@@ -15,6 +15,12 @@ const studioSchema = new Schema({
         unique: true,
         minLength: 3
     },
+    studioCity: {
+        type: String,
+        required: true,
+        unique: false,
+        minLength: 3
+    },
     studioAddress: {
         type: String,
         required: true,

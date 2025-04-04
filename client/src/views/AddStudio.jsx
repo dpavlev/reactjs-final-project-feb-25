@@ -14,6 +14,7 @@ export default function AddStudio() {
     const [studioId, setStudioId] = useState(null);
     const [values, setValues] = useState({
         studioName: "",
+        studioCity: "",
         studioAddress: "",
         studioPhone: "",
         studioDescription: "",
@@ -70,6 +71,7 @@ export default function AddStudio() {
                 <div className={formsStyles.loginContainer}>
                     <form onSubmit={submitAction} className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>
                         <input type="text" name="studioName" id="studioName" placeholder="Studio name..." className={formsStyles.formDiv} value={values.studioName} onChange={updateServices} />
+                        <input type="text" name="studioCity" id="studioCity" placeholder="City..." className={formsStyles.formDiv} value={values.studioCity} onChange={updateServices} />
                         <input type="text" name="studioAddress" id="studioAddress" placeholder="Address..." className={formsStyles.formDiv} value={values.studioAddress} onChange={updateServices} />
                         <input type="tel" name="studioPhone" id="studioPhone" placeholder="Phone number: +359 8..." className={formsStyles.formDiv} value={values.studioPhone} onChange={updateServices} />
                         <textarea name="studioDescription" id="description" placeholder="Description..." className={`${formsStyles.formDiv} ${formsStyles.formTextarea}`} value={values.studioDescription} onChange={updateServices}></textarea>

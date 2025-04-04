@@ -45,11 +45,11 @@ async function registerStudio(userData) {
             id: newStudio._id,
             email: newStudio.email,
             isStudio: true,
-            hasStudio: Boolean(studio.studio)
+            hasStudio: Boolean(newStudio.studio)
         };
         return payload;
     } catch (err) {
-        throw new Error("Error creating studio!");
+        throw new Error("Error creating studio: " + err.message);
     }
 }
 

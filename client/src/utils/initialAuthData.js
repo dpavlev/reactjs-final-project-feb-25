@@ -12,6 +12,11 @@ export default function initialAuthData() {
             data.isStudio = isStudio === "true";
         }
 
+        const hasStudio = localStorage.getItem("hasStudio");
+        if (hasStudio !== null) {
+            data.hasStudio = hasStudio === "true";
+        }
+
         return data;
     }
     return {};

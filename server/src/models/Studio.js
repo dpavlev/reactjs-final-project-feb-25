@@ -44,7 +44,17 @@ const studioSchema = new Schema({
     studioAcc: {
         type: Schema.Types.ObjectId,
         ref: "StudioAcc"
+    },
+    dateCreated: {
+        type: Date
     }
+});
+
+studioSchema.pre("save", function (next) {
+    if (!this.dateCreated) {
+        this.dateCreated = new Date();
+    }
+    next();
 });
 
 const Studio = model("Studio", studioSchema);

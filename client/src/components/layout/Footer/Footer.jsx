@@ -28,9 +28,9 @@ export default function Footer() {
                             </Link>
                         </li>
                         <li>
-                            <a href="#" className={styles.footerLink}>
-                                More Info
-                            </a>
+                            <Link to="/about" className={styles.footerLink}>
+                                About
+                            </Link>
                         </li>
                     </ul>
                 </div>

@@ -17,6 +17,7 @@ import EditStudio from "./views/EditStudio";
 import DeleteStudio from "./views/empty_render/DeleteStudio";
 import BookOnline from "./views/BookOnline/BookOnline";
 import ErrorPage from "./views/ErrorPage/ErrorPage";
+import About from "./views/About/About";
 
 function App() {
     const [authData, setAuthData] = useState(initialAuthData());
@@ -60,8 +61,8 @@ function App() {
                         <Route path="/deleteUser/:id" element={<DeleteUser />} />
                     </>
                 )}
+                <Route path="/about" element={<About />} />
                 <Route path="/logout" element={<Logout />} />
-                {/* TODO: Add error page */}
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
             <Footer />

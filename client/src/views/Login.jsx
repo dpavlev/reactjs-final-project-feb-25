@@ -45,16 +45,46 @@ export default function Login() {
                     <form onSubmit={submitForm} className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>
                         <div className={authStyles.loginType}>
                             <label htmlFor="forUser" className={authStyles.radioContainer}>
-                                <input type="radio" name="loginType" id="forUser" value="forUser" checked={values.loginType === "forUser"} onChange={handleChange} />
+                                <input
+                                    type="radio"
+                                    name="loginType"
+                                    id="forUser"
+                                    value="forUser"
+                                    checked={values.loginType === "forUser"}
+                                    onChange={handleChange}
+                                />
                                 <span className={authStyles.radioLabel}>Login for User</span>
                             </label>
                             <label htmlFor="forBusiness" className={authStyles.radioContainer}>
-                                <input type="radio" name="loginType" id="forBusiness" value="forBusiness" checked={values.loginType === "forBusiness"} onChange={handleChange} />
+                                <input
+                                    type="radio"
+                                    name="loginType"
+                                    id="forBusiness"
+                                    value="forBusiness"
+                                    checked={values.loginType === "forBusiness"}
+                                    onChange={handleChange}
+                                />
                                 <span className={authStyles.radioLabel}>Login for Studio</span>
                             </label>
                         </div>
-                        <input type="text" name="email" id="email" placeholder="Email" className={formsStyles.formDiv} value={values.email} onChange={handleChange} />
-                        <input type="password" name="password" id="password" placeholder="Password" className={formsStyles.formDiv} value={values.password} onChange={handleChange} />
+                        <input
+                            type="text"
+                            name="email"
+                            id="email"
+                            placeholder="Email"
+                            className={formsStyles.formDiv}
+                            value={values.email}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="password"
+                            name="password"
+                            id="password"
+                            placeholder="Password"
+                            className={formsStyles.formDiv}
+                            value={values.password}
+                            onChange={handleChange}
+                        />
                         <FormButton text="Login" />
                     </form>
                 </div>

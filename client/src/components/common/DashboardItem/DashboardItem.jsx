@@ -21,7 +21,14 @@ export default function DashboardItem({ itemData }) {
                     {itemData.services.slice(0, 3).map((service, index) => (
                         <DashboardItemService key={index} id={itemData._id} className={styles.itemsLink} service={service} />
                     ))}
-                    {itemData.services.length > 3 && <DashboardItemService id={itemData._id} className={styles.itemsLink} showMoreStyle={styles.showMore} service={{ name: "Show more..." }} />}
+                    {itemData.services.length > 3 && (
+                        <DashboardItemService
+                            id={itemData._id}
+                            className={styles.itemsLink}
+                            showMoreStyle={styles.showMore}
+                            service={{ name: "Show more..." }}
+                        />
+                    )}
                 </ul>
             </div>
         </div>

@@ -68,15 +68,33 @@ export default function Register() {
                     <form onSubmit={submitForm} className={`${formsStyles.formContent} ${formsStyles.loginForm}`}>
                         <div className={authStyles.loginType}>
                             <label htmlFor="forUser" className={authStyles.radioContainer}>
-                                <input type="radio" name="loginType" id="forUser" value="forUser" checked={loginType === "forUser"} onChange={handleChange} />
+                                <input
+                                    type="radio"
+                                    name="loginType"
+                                    id="forUser"
+                                    value="forUser"
+                                    checked={loginType === "forUser"}
+                                    onChange={handleChange}
+                                />
                                 <span className={authStyles.radioLabel}>Register User</span>
                             </label>
                             <label htmlFor="forBusiness" className={authStyles.radioContainer}>
-                                <input type="radio" name="loginType" id="forBusiness" value="forBusiness" checked={loginType === "forBusiness"} onChange={handleChange} />
+                                <input
+                                    type="radio"
+                                    name="loginType"
+                                    id="forBusiness"
+                                    value="forBusiness"
+                                    checked={loginType === "forBusiness"}
+                                    onChange={handleChange}
+                                />
                                 <span className={authStyles.radioLabel}>Register Studio</span>
                             </label>
                         </div>
-                        {loginType === "forUser" ? <RegisterUser values={userValues} handleChange={handleChange} /> : <RegisterStudio values={studioValues} handleChange={handleChange} />}
+                        {loginType === "forUser" ? (
+                            <RegisterUser values={userValues} handleChange={handleChange} />
+                        ) : (
+                            <RegisterStudio values={studioValues} handleChange={handleChange} />
+                        )}
                         <FormButton text="Register" />
                     </form>
                 </div>

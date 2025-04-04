@@ -59,20 +59,52 @@ export default function UserProfile() {
                         <div className={userProfileStyles.nameContainer}>
                             <span>
                                 <label htmlFor="firstName">First name</label>
-                                <input type="text" name="firstName" id="firstName" placeholder="First name..." className={formsStyles.formDiv} value={values.firstName} onChange={handleChange} />
+                                <input
+                                    type="text"
+                                    name="firstName"
+                                    id="firstName"
+                                    placeholder="First name..."
+                                    className={formsStyles.formDiv}
+                                    value={values.firstName}
+                                    onChange={handleChange}
+                                />
                             </span>
                             <span>
                                 <label htmlFor="lastName">Last name</label>
-                                <input type="text" name="lastName" id="lastName" placeholder="Last name..." className={formsStyles.formDiv} value={values.lastName} onChange={handleChange} />
+                                <input
+                                    type="text"
+                                    name="lastName"
+                                    id="lastName"
+                                    placeholder="Last name..."
+                                    className={formsStyles.formDiv}
+                                    value={values.lastName}
+                                    onChange={handleChange}
+                                />
                             </span>
                         </div>
                         <div>
                             <label htmlFor="phoneNumber">Phone Number</label>
-                            <input type="text" name="phoneNumber" id="phoneNumber" placeholder="+359 8..." className={formsStyles.formDiv} value={values.phoneNumber} onChange={handleChange} />
+                            <input
+                                type="text"
+                                name="phoneNumber"
+                                id="phoneNumber"
+                                placeholder="+359 8..."
+                                className={formsStyles.formDiv}
+                                value={values.phoneNumber}
+                                onChange={handleChange}
+                            />
                         </div>
                         <div>
                             <label htmlFor="email">Email</label>
-                            <input type="email" name="email" id="email" placeholder="john@example.com" className={formsStyles.formDiv} value={values.email} onChange={handleChange} />
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                placeholder="john@example.com"
+                                className={formsStyles.formDiv}
+                                value={values.email}
+                                onChange={handleChange}
+                            />
                         </div>
                         <div className={userProfileStyles.buttons}>
                             <FormButton text="Save" className={userProfileStyles.formSubmitBtn} />

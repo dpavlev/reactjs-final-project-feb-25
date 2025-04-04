@@ -23,6 +23,7 @@ export default function Home() {
             <div className={indexStyles.imageBackground}>
                 <div className={indexStyles.topContent}>
                     <div className={`${indexStyles.formContainer} ${indexStyles.centerForm}`}>
+                        <h1 className={indexStyles.infoHeading}>Welcome to StyleGo. Browse many beauty salons and studios!</h1>
                         <SearchForm />
                     </div>
                 </div>
@@ -32,7 +33,7 @@ export default function Home() {
                 <div className={indexStyles.infoBoxes}>
                     <div className={indexStyles.infoDiv}>
                         <img src="/images/beauty-saloon-grad.png" className={indexStyles.infoPanelImgSize} />
-                        Choose between {studiosCount} salons with ratings
+                        Choose between {studiosCount} professional beauty salons and studios
                     </div>
                     <div className={indexStyles.infoDiv}>
                         <img src="/images/moon-grad.png" className={indexStyles.infoPanelImgSize} />

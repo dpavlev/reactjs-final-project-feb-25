@@ -11,9 +11,7 @@ export default function SearchForm() {
     const navigate = useNavigate();
     const [message, setMessage] = useState("");
     const [values, setValues] = useState({
-        city: "",
-        service: "",
-        date: getInitialDate()
+        city: ""
     });
 
     function valuesChange(e) {
@@ -23,7 +21,7 @@ export default function SearchForm() {
     function onSubmit(e) {
         e.preventDefault();
         try {
-            validateForm(values);
+            // validateForm(values);
             const parsedDate = Date.parse(values.date);
             const query = new URLSearchParams({ ...values, date: parsedDate }).toString();
             navigate({
@@ -39,7 +37,7 @@ export default function SearchForm() {
         <>
             <Notification message={message} onClose={() => setMessage("")} />
             <form onSubmit={onSubmit} className={formStyle.searchFormContent}>
-                <h1 className={formStyle.formHeader}>Book an appointment</h1>
+                <h1 className={formStyle.formHeader}>Search studios by city</h1>
                 <div className={formStyle.formDiv}>
                     <i className={`fa-solid fa-location-dot ${formStyle.formIco}`}></i>
                     <select className={formStyle.formSelector} name="city" id="city" value={values.city} onChange={valuesChange}>
@@ -55,7 +53,7 @@ export default function SearchForm() {
                         </option>
                     </select>
                 </div>
-                <div className={formStyle.formDiv}>
+                {/* <div className={formStyle.formDiv}>
                     <i className={`fa-solid fa-spa ${formStyle.formIco}`}></i>
                     <select className={formStyle.formSelector} name="service" id="service" value={values.service} onChange={valuesChange}>
                         <option value="" disabled hidden>
@@ -69,7 +67,7 @@ export default function SearchForm() {
                         </option>
                     </select>
                 </div>
-                <DatetimePicker onChange={valuesChange} />
+                <DatetimePicker onChange={valuesChange} /> */}
                 <FormButton text="Show salons" />
             </form>
         </>

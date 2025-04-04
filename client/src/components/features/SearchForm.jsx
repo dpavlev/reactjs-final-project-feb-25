@@ -38,7 +38,7 @@ export default function SearchForm() {
     return (
         <>
             <Notification message={message} onClose={() => setMessage("")} />
-            <form onSubmit={onSubmit} className={formStyle.formContent}>
+            <form onSubmit={onSubmit} className={formStyle.searchFormContent}>
                 <h1 className={formStyle.formHeader}>Book an appointment</h1>
                 <div className={formStyle.formDiv}>
                     <i className={`fa-solid fa-location-dot ${formStyle.formIco}`}></i>

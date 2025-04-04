@@ -34,6 +34,18 @@
     max-width: 400px;
 }
 
+.searchFormContent {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    padding: 1rem 1.2rem 1rem 1.2rem;
+    border-radius: 10px;
+    min-width: 400px
+}
+
 .formDiv {
     display: flex;
     justify-content: space-between;
@@ -105,5 +117,14 @@
 }
 
 .formSelector:hover {
+    cursor: pointer;
+}
+
+.datetimeInput {
+    padding-left: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    min-height: 40px;
+    width: 100%;
     cursor: pointer;
 }

@@ -1,6 +1,7 @@
 import { DatePicker } from "antd";
 import en from "antd/es/date-picker/locale/en_US";
 import dayjs from "dayjs";
+import formStyle from "../../styles/Forms.module.css";
 
 export default function DatetimePicker({ onChange }) {
     const getInitialDate = () => {
@@ -35,9 +36,9 @@ export default function DatetimePicker({ onChange }) {
     };
 
     return (
-        <div className="form-div datetime-container">
+        <div className={`datetimeContainer ${formStyle.formDiv}`}>
             <DatePicker
-                className="datetime-input"
+                className={formStyle.datetimeInput}
                 defaultValue={defaultValue}
                 locale={buddhistLocale}
                 showTime={{ minuteStep: 5 }}

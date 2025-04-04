@@ -22,7 +22,7 @@ export default function Home() {
         <main className="main">
             <div className={indexStyles.imageBackground}>
                 <div className={indexStyles.topContent}>
-                    <div className={indexStyles.formContainer}>
+                    <div className={`${indexStyles.formContainer} ${indexStyles.centerForm}`}>
                         <SearchForm />
                     </div>
                 </div>

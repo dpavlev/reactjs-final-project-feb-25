@@ -34,4 +34,15 @@ studiosController.post("/create", async (req, res) => {
     }
 });
 
+studiosController.put("/edit/:id", async (req, res) => {
+    const studioData = req.body;
+    const { id } = req.params;
+    try {
+        await studiosService.updateStudio(id, studioData);
+        res.end();
+    } catch (err) {
+        res.status(400).json({ message: getErrorMessage(err) });
+    }
+});
+
 export default studiosController;

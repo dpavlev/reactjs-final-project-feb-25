@@ -2,8 +2,10 @@ import { useState } from "react";
 import FormButton from "../common/FormButton";
 import DatetimePicker from "../common/DatetimePicker";
 import getInitialDate from "../../utils/getInitialDate";
+import { createSearchParams, useNavigate } from "react-router";
 
 export default function SearchForm() {
+    const navigate = useNavigate();
     const [values, setValues] = useState({
         city: "",
         service: "",
@@ -14,8 +16,18 @@ export default function SearchForm() {
         setValues({ ...values, [e.target.name]: e.target.value });
     }
 
+    function onSubmit(e) {
+        e.preventDefault();
+        const parsedDate = Date.parse(values.date);
+        const query = new URLSearchParams({ ...values, date: parsedDate }).toString();
+        navigate({
+            pathname: "/dashboard",
+            search: createSearchParams(query).toString()
+        });
+    }
+
     return (
-        <form className="form-content">
+        <form onSubmit={onSubmit} className="form-content">
             <h1 className="form-header">Book an appointment</h1>
             <div className="form-div">
                 <i className="fa-solid fa-location-dot form-ico"></i>
@@ -40,7 +52,7 @@ export default function SearchForm() {
                     </option>
                     <option value="maleHaircut">Male haircut</option>
                     <option value="femaleHaircut">Female haircut</option>
-                    <option value="nailPolish">Nail polish</option>
+                    <option value="beardTrim">Beard Trim</option>
                     <option value="" disabled>
                         Expect more soon...
                     </option>

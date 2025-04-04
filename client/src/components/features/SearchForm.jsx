@@ -33,6 +33,14 @@ export default function SearchForm() {
 
     function onSubmit(e) {
         e.preventDefault();
+        if (values.city === "") {
+            setMessage("Please select a city.");
+            return;
+        }
+        if (values.city === "all") {
+            navigate("/dashboard");
+            return;
+        }
         try {
             const query = new URLSearchParams({ ...values }).toString();
             navigate({
@@ -55,6 +63,7 @@ export default function SearchForm() {
                         <option value="" disabled hidden>
                             Choose a city
                         </option>
+                        <option value="all">Show All</option>
                         {cities.map((city) => (
                             <option key={city} value={city}>
                                 {city.charAt(0).toUpperCase() + city.slice(1)}

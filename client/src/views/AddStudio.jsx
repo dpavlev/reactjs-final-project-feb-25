@@ -152,6 +152,7 @@ export default function AddStudio() {
                                         value={values.services[index]?.price || 0}
                                         onChange={(e) => handleServiceUpdate(index, "price", e.target.value)}
                                     />
+                                    lv.
                                 </div>
                             ))}
                         </div>

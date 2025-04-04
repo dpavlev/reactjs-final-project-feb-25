@@ -5,7 +5,7 @@ export default function Service({ name, price }) {
         <li>
             <span>{name}</span>
             <div>
-                <span>{price} lv.&nbsp;</span>
+                <span>{price.toFixed(2)} lv.&nbsp;</span>
                 <label htmlFor={name.split(" ").join("").toLowerCase()} className={studioStyles.radioContainer}>
                     <input type="checkbox" name={name.split(" ").join("").toLowerCase()} id={name.split(" ").join("").toLowerCase()} />
                     <span className={studioStyles.radioLabel}>Select</span>

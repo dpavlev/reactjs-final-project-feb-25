@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useStudioApi } from "../api/studioApi";
 import FeaturedSalon from "../components/common/FeaturedSalon";
 import SearchForm from "../components/features/SearchForm";
+import indexStyles from "../styles/Index.module.css";
 
 export default function Home() {
     const { getAllStudios } = useStudioApi();
@@ -19,35 +20,42 @@ export default function Home() {
 
     return (
         <main className="main">
-            <div className="image-background">
-                <div className="top-content">
-                    <div className="form-container center-form">
-                        <SearchForm />
+            <div className={indexStyles.imageBackground}>
+                <div className={indexStyles.topContent}>
+                    <div className={indexStyles.formContainer}>
+                        </h1>
                     </div>
                 </div>
             </div>
-            <div className="info-panel">
-                <h1 className="info-heading">Book a beauty appointment quickly and easily</h1>
-                <div className="info-boxes">
-                    <div className="info-div">
-                        <img src="/images/beauty-saloon-grad.png" className="info-panel-img-size" />
+            <div className={indexStyles.infoPanel}>
+                <h1 className={indexStyles.infoHeading}>Book a beauty appointment quickly and easily</h1>
+                <div className={indexStyles.infoBoxes}>
+                    <div className={indexStyles.infoDiv}>
+                        <img src="/images/beauty-saloon-grad.png" className={indexStyles.infoPanelImgSize} />
                         Choose between {studiosCount} salons with ratings
                     </div>
-                    <div className="info-div">
-                        <img src="/images/moon-grad.png" className="info-panel-img-size" />
+                    <div className={indexStyles.infoDiv}>
+                        <img src="/images/moon-grad.png" className={indexStyles.infoPanelImgSize} />
                         Book an appointment online at any time of the day
                     </div>
-                    <div className="info-div">
-                        <img src="/images/check-grad.png" className="info-panel-img-size" />
+                    <div className={indexStyles.infoDiv}>
+                        <img src="/images/check-grad.png" className={indexStyles.infoPanelImgSize} />
                         Many customers have booked an appointment and have been satisfied
                     </div>
                 </div>
             </div>
-            <div className="special-salons main-content-display">
-                <h1 className="info-heading">New salons</h1>
-                <div className="salon-items-div">
+            <div className={`${indexStyles.specialSalons} ${indexStyles.mainContentDisplay}`}>
+                <h1 className={indexStyles.infoHeading}>New salons</h1>
+                <div className={indexStyles.salonItemsDiv}>
                     {studios.map((studio, index) => (
-                        <FeaturedSalon key={index} name={studio.studioName} address={studio.studioAddress} image={studio.studioImg} id={studio._id} />
+                        <FeaturedSalon
+                            key={index}
+                            name={studio.studioName}
+                            address={studio.studioAddress}
+                            image={studio.studioImg}
+                            id={studio._id}
+                            className={indexStyles.salonItem}
+                        />
                     ))}
                 </div>
             </div>

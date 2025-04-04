@@ -10,7 +10,7 @@ import Notification from "../components/layout/Notification";
 export default function StudioView() {
     const navigate = useNavigate();
     const formRef = useRef(null);
-    const { isStudio } = useContext(UserContext);
+    const { isStudio, email } = useContext(UserContext);
     const { id } = useParams();
     const { getOneStudio, getOwner } = useStudioApi();
     const [ownerEmail, setOwnerEmail] = useState("");
@@ -158,7 +158,7 @@ export default function StudioView() {
                             </li>
                         </ul>
                     </div>
-                    {isStudio && (
+                    {isStudio && ownerEmail === email && (
                         <div className={`${studioStyles.ownerButtonsWrapper}`}>
                             <h1>Studio Management</h1>
                             <section className={studioStyles.ownerButtons}>

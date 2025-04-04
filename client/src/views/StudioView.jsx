@@ -13,6 +13,7 @@ export default function StudioView() {
     const [ownerEmail, setOwnerEmail] = useState("");
     const [values, setValues] = useState({
         studioName: "",
+        studioCity: "",
         studioAddress: "",
         studioPhone: "",
         studioDescription: "",
@@ -60,7 +61,9 @@ export default function StudioView() {
                     <div className={studioStyles.studioTopContent}>
                         <div>
                             <h1>{values.studioName}</h1>
-                            <h3 style={{ color: "gray" }}>{values.studioAddress}</h3>
+                            <h3 style={{ color: "gray" }}>
+                                {values.studioAddress}, {values.studioCity.charAt(0).toUpperCase() + values.studioCity.slice(1)}
+                            </h3>
                         </div>
                         <FormButton text="Book Online" className={studioStyles.bookBtn} />
                         {/* TODO: Add book page */}

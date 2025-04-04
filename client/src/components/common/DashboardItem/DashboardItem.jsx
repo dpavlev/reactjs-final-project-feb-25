@@ -15,7 +15,9 @@ export default function DashboardItem({ itemData }) {
                     <Link to={`/studioView/${itemData._id}`} className={styles.itemsLink}>
                         <h2 className={styles.itemHeading}>{itemData.studioName}</h2>
                     </Link>
-                    <p className={styles.itemAddress}>{itemData.studioAddress}</p>
+                    <p className={styles.itemAddress}>
+                        {itemData.studioAddress}, {itemData.studioCity.charAt(0).toUpperCase() + itemData.studioCity.slice(1)}
+                    </p>
                 </div>
                 <ul>
                     {itemData.services.slice(0, 3).map((service, index) => (

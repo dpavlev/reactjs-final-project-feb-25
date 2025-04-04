@@ -57,6 +57,7 @@ export default function Home() {
                                 image={studio.studioImg}
                                 id={studio._id}
                                 className={indexStyles.salonItem}
+                                city={studio.studioCity}
                             />
                         ))
                     ) : (

@@ -1,8 +1,14 @@
-import { Navigate } from "react-router";
+import { Navigate, useNavigate } from "react-router";
 import { useLogout } from "../../api/authApi";
+import { useEffect } from "react";
 
 export default function Logout() {
+    const navigate = useNavigate();
     const { isLoggedOut } = useLogout();
 
-    return isLoggedOut ? <Navigate to="/" /> : null; // spinner is better
+    useEffect(() => {
+        if (isLoggedOut) {
+            navigate("/");
+        }
+    }, [isLoggedOut, navigate]);
 }

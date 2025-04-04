@@ -16,6 +16,7 @@ import StudioView from "./views/StudioView";
 import EditStudio from "./views/EditStudio";
 import DeleteStudio from "./views/empty_render/DeleteStudio";
 import BookOnline from "./views/BookOnline/BookOnline";
+import ErrorPage from "./views/ErrorPage/ErrorPage";
 
 function App() {
     const [authData, setAuthData] = useState(initialAuthData());
@@ -57,11 +58,11 @@ function App() {
                         {authData.isStudio || <Route path="/bookOnline" element={<BookOnline />} />}
                         <Route path="/userProfile" element={<UserProfile />} />
                         <Route path="/deleteUser/:id" element={<DeleteUser />} />
-                        <Route path="/logout" element={<Logout />} />
                     </>
                 )}
+                <Route path="/logout" element={<Logout />} />
                 {/* TODO: Add error page */}
-                <Route path="*" element={<Navigate to={"/"} />} />
+                <Route path="*" element={<ErrorPage />} />
             </Routes>
             <Footer />
         </UserContext.Provider>

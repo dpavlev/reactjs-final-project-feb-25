@@ -1,17 +1,9 @@
 import { useState } from "react";
 import FormButton from "../common/FormButton";
 import DatetimePicker from "../common/DatetimePicker";
+import getInitialDate from "../../utils/getInitialDate";
 
 export default function SearchForm() {
-    const getInitialDate = () => {
-        let date = new Date(Date.now());
-        date.setHours(date.getHours() + 4);
-        let minutes = date.getMinutes();
-        minutes = Math.round(minutes / 10) * 10;
-        date.setMinutes(minutes);
-        return date.toISOString().slice(0, 16);
-    };
-
     const [values, setValues] = useState({
         city: "",
         service: "",

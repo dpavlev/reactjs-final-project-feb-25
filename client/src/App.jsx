@@ -54,7 +54,7 @@ function App() {
                                 <Route path="/studioView/:id/delete" element={<DeleteStudio />} />
                             </>
                         )}
-                        <Route path="/bookOnline" element={<BookOnline />} />
+                        {authData.isStudio || <Route path="/bookOnline" element={<BookOnline />} />}
                         <Route path="/userProfile" element={<UserProfile />} />
                         <Route path="/deleteUser/:id" element={<DeleteUser />} />
                         <Route path="/logout" element={<Logout />} />

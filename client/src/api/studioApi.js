@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import request from "../utils/request";
+import validateForm from "../validators/formValidator";
 
 export function useStudioApi() {
     const getOneStudio = async (id) => {
@@ -13,8 +14,13 @@ export function useStudioApi() {
     };
 
     const createStudio = async (studioData) => {
-        const data = await request("POST", "studios/create", studioData);
-        return data;
+        try {
+            validateForm(studioData);
+            const data = await request("POST", "studios/create", studioData);
+            return data;
+        } catch (err) {
+            throw new Error(err.message);
+        }
     };
 
     const getOwner = async (ownerId) => {
@@ -28,8 +34,13 @@ export function useStudioApi() {
     };
 
     const editStudio = async (studioId, studioData) => {
-        const data = await request("PUT", `studios/edit/${studioId}`, studioData);
-        return data;
+        try {
+            validateForm(studioData);
+            const data = await request("PUT", `studios/edit/${studioId}`, studioData);
+            return data;
+        } catch (err) {
+            throw new Error(err.message);
+        }
     };
 
     const bookServices = async (studioId, bookingData) => {

@@ -24,8 +24,8 @@ export default function SearchForm() {
                 setMessage(err.message);
             }
         }
-        fetchCities();
-    });
+        if (!cities.length) fetchCities();
+    }, [getAllStudios, cities]);
 
     function valuesChange(e) {
         setValues({ ...values, [e.target.name]: e.target.value });

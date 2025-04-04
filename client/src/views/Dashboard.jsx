@@ -9,14 +9,12 @@ export default function Dashboard() {
     const { getAllStudios } = useStudioApi();
     const [queryParams] = useSearchParams();
     const city = queryParams.get("city")?.charAt(0).toUpperCase() + queryParams.get("city")?.slice(1) || "";
-    const service = queryParams.get("service");
-    const date = queryParams.get("date");
 
     useEffect(() => {
         if (studios.length === 0) {
-            getAllStudios({ city, service, date }).then((data) => setStudios(data));
+            getAllStudios({ city }).then((data) => setStudios(data));
         }
-    }, [getAllStudios, studios.length, city, service, date]);
+    }, [getAllStudios, studios.length, city]);
 
     return (
         <main className="main">

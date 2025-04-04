@@ -29,7 +29,7 @@ async function getAllStudios(query = {}) {
         }
 
         return studios.filter((studio) => {
-            return query.city && studio.studioCity;
+            return query.city.toLowerCase() === studio.studioCity.toLowerCase();
         });
     } catch (error) {
         console.error("Error fetching studios:", error);

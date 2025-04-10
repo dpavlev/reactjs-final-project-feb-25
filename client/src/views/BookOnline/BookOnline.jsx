@@ -16,8 +16,8 @@ export default function BookOnline() {
     const [message, setMessage] = useState("");
     const [services, setServices] = useState([]);
     const [dates, setDates] = useState({
-        startDate: null,
-        endDate: null
+        dateRangeStart: null,
+        dateRangeEnd: null
     });
     const { getOneStudio, bookServices } = useStudioApi();
 
@@ -38,33 +38,42 @@ export default function BookOnline() {
     }, []);
 
     function onChange(values) {
-        if (values) {
-            const dateRangeStart = values[0].format("DD/MM/YYYY HH:mm");
-            const dateRangeEnd = values[1].format("DD/MM/YYYY HH:mm");
+        if (values && values[0] && values[1]) {
+            const dateRangeStart = values[0].format("YYYY-MM-DDTHH:mm:ss");
+            const dateRangeEnd = values[1].format("YYYY-MM-DDTHH:mm:ss");
             setDates({ dateRangeStart, dateRangeEnd });
         } else {
-            setDates([]);
+            setDates({ dateRangeStart: null, dateRangeEnd: null });
         }
     }
 
     function onSubmit(e) {
         e.preventDefault();
-        const bookingData = {
-            ...dates,
-            services,
-            studioId: state.studioId,
-            userId: id
-        };
-        bookServices(state.studioId, bookingData)
-            .then(() => {
-                setMessage("Booking successful!");
-                setTimeout(() => {
-                    navigate(`/studioView/${state.studioId}`);
-                }, 3000);
-            })
-            .catch((err) => {
-                setMessage(err.message);
-            });
+        try {
+            const formattedDates = {
+                dateRangeStart: new Date(dates.dateRangeStart).toISOString(),
+                dateRangeEnd: new Date(dates.dateRangeEnd).toISOString()
+            };
+            const bookingData = {
+                ...formattedDates,
+                services,
+                studioId: state.studioId,
+                userId: id
+            };
+            bookServices(state.studioId, bookingData)
+                .then(() => {
+                    setMessage("Booking successful!");
+                    setTimeout(() => {
+                        navigate(`/studioView/${state.studioId}`);
+                    }, 3000);
+                })
+                .catch((err) => {
+                    setMessage(err.message);
+                });
+        } catch (err) {
+            setMessage("Please select dates again!");
+            return;
+        }
     }
 
     return (
